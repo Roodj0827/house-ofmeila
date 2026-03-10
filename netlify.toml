@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+
+# Activer Netlify Identity pour l'authentification Decap CMS
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"

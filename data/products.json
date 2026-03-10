@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Jeu Reine Dorée",
+    "price": 4500,
+    "category": "jeu_de_bijoux",
+    "desc": "",
+    "image": ""
+  },
+  {
+    "name": "Collier Étoile Céleste",
+    "price": 1850,
+    "category": "collier",
+    "desc": "",
+    "image": ""
+  },
+  {
+    "name": "Bracelet Lumière",
+    "price": 1200,
+    "category": "bracelet",
+    "desc": "",
+    "image": ""
+  },
+  {
+    "name": "Bague Solitaire",
+    "price": 950,
+    "category": "bague",
+    "desc": "",
+    "image": ""
+  },
+  {
+    "name": "Tour de Cou Royal",
+    "price": 6000,
+    "category": "tour_de_cou",
+    "desc": "",
+    "image": ""
+  },
+  {
+    "name": "Chevillère Cascade",
+    "price": 800,
+    "category": "chevillere",
+    "desc": "",
+    "image": ""
+  }
+]
