@@ -1,13 +1,16 @@
 [build]
   publish = "."
 
-# Pas de cache sur les fichiers JSON — les modifications apparaissent immédiatement
+# Pas de cache sur les données et le JS
 [[headers]]
   for = "/data/*"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
-    Pragma = "no-cache"
-    Expires = "0"
+
+[[headers]]
+  for = "/main.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
 
 # Sécurité admin
 [[headers]]
