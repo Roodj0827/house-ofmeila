@@ -12,60 +12,56 @@ collections:
   # ─── PRODUITS ───
   - name: "products"
     label: "Produits"
-    label_singular: "Produit"
-    description: "Gérez votre catalogue de bijoux. Chaque modification est publiée automatiquement sur le site."
-    folder: "data/products"
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    identifier_field: "name"
-    fields:
-      - label: "Nom du produit"
-        name: "name"
-        widget: "string"
-        hint: "ex: Collier Étoile Céleste"
+    files:
+      - label: "Catalogue"
+        name: "catalogue"
+        file: "data/products.json"
+        fields:
+          - label: "Produits"
+            name: "items"
+            widget: "list"
+            label_singular: "Produit"
+            summary: "{{fields.name}} — {{fields.price}} HTG"
+            fields:
+              - label: "Nom du produit"
+                name: "name"
+                widget: "string"
+                hint: "ex: Collier Étoile Céleste"
 
-      - label: "Prix (HTG)"
-        name: "price"
-        widget: "number"
-        value_type: "int"
-        min: 0
-        hint: "Entrez le prix en gourdes haïtiennes"
+              - label: "Prix (HTG)"
+                name: "price"
+                widget: "number"
+                value_type: "int"
+                min: 0
 
-      - label: "Catégorie"
-        name: "category"
-        widget: "select"
-        options:
-          - { label: "Jeu de bijoux", value: "jeu_de_bijoux" }
-          - { label: "Collier", value: "collier" }
-          - { label: "Bracelet", value: "bracelet" }
-          - { label: "Bague", value: "bague" }
-          - { label: "Chevillère", value: "chevillere" }
-          - { label: "Tour de cou", value: "tour_de_cou" }
-          - { label: "Montre", value: "montre" }
-          - { label: "Valise", value: "valise" }
-          - { label: "Lunettes", value: "lunettes" }
-          - { label: "Autres", value: "autres" }
+              - label: "Catégorie"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Jeu de bijoux", value: "jeu_de_bijoux" }
+                  - { label: "Collier", value: "collier" }
+                  - { label: "Bracelet", value: "bracelet" }
+                  - { label: "Bague", value: "bague" }
+                  - { label: "Chevillère", value: "chevillere" }
+                  - { label: "Tour de cou", value: "tour_de_cou" }
+                  - { label: "Montre", value: "montre" }
+                  - { label: "Valise", value: "valise" }
+                  - { label: "Lunettes", value: "lunettes" }
+                  - { label: "Autres", value: "autres" }
 
-      - label: "Description"
-        name: "desc"
-        widget: "text"
-        required: false
-        hint: "Description courte du produit (style, matière, finitions...)"
+              - label: "Description"
+                name: "desc"
+                widget: "text"
+                required: false
 
-      - label: "Photo du produit"
-        name: "image"
-        widget: "image"
-        required: false
-        hint: "Téléversez une photo ou collez une URL externe (Google Drive, etc.)"
-        media_library:
-          config:
-            multiple: false
+              - label: "Photo du produit"
+                name: "image"
+                widget: "image"
+                required: false
 
   # ─── PARAMÈTRES ───
   - name: "settings"
     label: "Paramètres du site"
-    description: "Configuration globale du site : WhatsApp, réseaux sociaux, logo et barre d'annonce."
     files:
       - label: "Paramètres généraux"
         name: "general"
@@ -81,34 +77,29 @@ collections:
             name: "message"
             widget: "text"
             required: false
-            hint: "Message affiché par défaut quand un client vous contacte"
 
           - label: "Barre d'annonce"
             name: "announcement"
             widget: "string"
             required: false
-            hint: "Texte affiché en haut du site. Laissez vide pour masquer."
+            hint: "Laissez vide pour masquer"
 
           - label: "Logo"
             name: "logoUrl"
             widget: "image"
             required: false
-            hint: "Téléversez votre logo (PNG transparent recommandé)"
 
           - label: "Instagram"
             name: "instagram"
             widget: "string"
             required: false
-            hint: "URL complète ex: https://instagram.com/houseofmeila"
 
           - label: "Facebook"
             name: "facebook"
             widget: "string"
             required: false
-            hint: "URL complète ex: https://facebook.com/houseofmeila"
 
           - label: "TikTok"
             name: "tiktok"
             widget: "string"
             required: false
-            hint: "URL complète ex: https://tiktok.com/@houseofmeila"
