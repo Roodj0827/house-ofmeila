@@ -1,7 +1,15 @@
 [build]
   publish = "."
 
-# Activer Netlify Identity pour l'authentification Decap CMS
+# Pas de cache sur les fichiers JSON — les modifications apparaissent immédiatement
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+
+# Sécurité admin
 [[headers]]
   for = "/admin/*"
   [headers.values]
