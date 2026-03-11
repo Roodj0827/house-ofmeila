@@ -34,8 +34,10 @@ async function loadData() {
 
     if (productsRes.ok) {
       const raw = await productsRes.json();
-      // Ajouter un id basé sur l'index si absent
-      data.products = raw.map((p, i) => ({ id: p.id || (i + 1), ...p }));
+      // Decap CMS stocke les produits sous { items: [...] } avec le widget list
+      // On accepte aussi un tableau direct pour la compatibilité
+      const list = Array.isArray(raw) ? raw : (raw.items || []);
+      data.products = list.map((p, i) => ({ id: p.id || (i + 1), ...p }));
     }
 
     if (settingsRes.ok) {
