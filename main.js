@@ -24,6 +24,27 @@ const CAT_ICONS = {
   default: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>`
 };
 
+// ─── CONVERTISSEUR D URLs EN LIENS D IMAGE DIRECTE ───
+function convertImageUrl(url) {
+  if (!url) return '';
+
+  // Google Drive
+  const driveFileMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  const driveOpenMatch = url.match(/drive\.google\.com\/(?:open|uc)\?(?:.*&)?id=([a-zA-Z0-9_-]+)/);
+  const driveId = (driveFileMatch && driveFileMatch[1]) || (driveOpenMatch && driveOpenMatch[1]);
+  if (driveId) {
+    return 'https://drive.google.com/uc?export=view&id=' + driveId;
+  }
+
+  // Google Photos / lh3.googleusercontent.com
+  if (url.includes('photos.google.com') || url.includes('lh3.googleusercontent.com')) {
+    const clean = url.replace(/=[wsh]\d+(-[wsh]\d+)*$/, '');
+    return clean + '=w1200';
+  }
+
+  return url;
+}
+
 // ─── LOAD DATA depuis les fichiers JSON ───
 async function loadData() {
   try {
@@ -37,11 +58,16 @@ async function loadData() {
       // Decap CMS stocke les produits sous { items: [...] } avec le widget list
       // On accepte aussi un tableau direct pour la compatibilité
       const list = Array.isArray(raw) ? raw : (raw.items || []);
-      data.products = list.map((p, i) => ({ id: p.id || (i + 1), ...p }));
+      data.products = list.map((p, i) => ({
+        id: p.id || (i + 1),
+        ...p,
+        image: convertImageUrl(p.image)
+      }));
     }
 
     if (settingsRes.ok) {
-      data.settings = await settingsRes.json();
+      const s = await settingsRes.json();
+      data.settings = { ...s, logoUrl: convertImageUrl(s.logoUrl) };
     }
 
   } catch (e) {
