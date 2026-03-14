@@ -357,7 +357,10 @@ function renderSocialSection() {
 
 function scrollToSection(id) {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (!el) return;
+  const navH = document.getElementById('main-nav') ? document.getElementById('main-nav').offsetHeight : 74;
+  const top = el.getBoundingClientRect().top + window.scrollY - navH;
+  window.scrollTo({ top, behavior: 'smooth' });
 }
 
 // ─── NAV SCROLL ───
