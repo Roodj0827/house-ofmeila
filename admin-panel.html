@@ -556,10 +556,8 @@ body {
   position: absolute;
   top: 10px; right: 10px;
   display: flex; gap: 6px;
-  opacity: 0;
-  transition: opacity var(--transition);
+  opacity: 1;
 }
-.product-card-admin:hover .pca-actions { opacity: 1; }
 .pca-action-btn {
   width: 32px; height: 32px;
   background: var(--overlay);
@@ -689,6 +687,31 @@ body {
 .form-input::placeholder, .form-textarea::placeholder { color: var(--text3); }
 .form-select option { background: var(--card); }
 .form-textarea { resize: vertical; min-height: 80px; }
+
+.img-tab-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 14px;
+  font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+  border: 1px solid var(--border); background: transparent;
+  color: var(--text3); cursor: pointer;
+  transition: all var(--transition);
+  font-family: 'Jost', sans-serif;
+}
+.img-tab-btn.active { border-color: var(--gold); color: var(--gold); }
+.img-tab-btn:hover { border-color: var(--border); color: var(--text2); }
+.img-tab-btn.active:hover { border-color: var(--gold); color: var(--gold); }
+
+.upload-zone {
+  width: 100%; padding: 32px 20px;
+  background: var(--bg3);
+  border: 1px dashed var(--border);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: center;
+}
+.upload-zone:hover { border-color: var(--gold); background: var(--bg4); }
+.upload-zone.uploading { opacity: 0.6; pointer-events: none; }
 
 .image-preview {
   width: 100%; height: 160px;
@@ -913,6 +936,24 @@ body {
   to { left: 140%; }
 }
 
+.mob-menu-btn {
+  display: none;
+  width: 40px; height: 40px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+.mob-menu-btn:hover { border-color: var(--gold); color: var(--gold); }
+.mob-menu-btn svg { width: 18px; height: 18px; }
+
+@media (max-width: 768px) {
+  .mob-menu-btn { display: flex; }
+}
+
 /* ═══════════════════════════════════════════
    SCROLLBAR
 ═══════════════════════════════════════════ */
@@ -1014,6 +1055,9 @@ body {
   <!-- Main -->
   <div class="main">
     <div class="topbar">
+      <button class="mob-menu-btn" id="mob-menu-btn" onclick="toggleSidebar()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
       <div class="topbar-title" id="page-title">Dashboard</div>
       <div class="topbar-right">
         <div class="save-indicator" id="save-indicator">✦ Sauvegardé</div>
@@ -1159,6 +1203,9 @@ body {
   </div>
 </div>
 
+<!-- SIDEBAR OVERLAY MOBILE -->
+<div id="sidebar-overlay" onclick="toggleSidebar()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:99;backdrop-filter:blur(2px)"></div>
+
 <!-- MODAL PRODUIT -->
 <div class="modal-overlay" id="product-modal" onclick="if(event.target===this)closeProductModal()">
   <div class="modal">
@@ -1201,9 +1248,29 @@ body {
         <textarea class="form-textarea" id="modal-desc" placeholder="Style, matière, finitions..."></textarea>
       </div>
       <div class="form-field">
-        <label class="form-label">Photo (URL)</label>
-        <input class="form-input" id="modal-image" placeholder="https://drive.google.com/file/d/... ou lien direct" oninput="previewImage(this.value)">
-        <div class="form-hint">Google Drive et Google Photos sont convertis automatiquement</div>
+        <label class="form-label">Photo du produit</label>
+        <div style="display:flex;gap:10px;margin-bottom:10px">
+          <button type="button" class="img-tab-btn active" id="tab-upload" onclick="switchImgTab('upload')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Galerie / Fichier
+          </button>
+          <button type="button" class="img-tab-btn" id="tab-url" onclick="switchImgTab('url')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            Lien URL
+          </button>
+        </div>
+        <div id="img-tab-upload">
+          <input type="file" id="modal-image-file" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
+          <div class="upload-zone" onclick="document.getElementById('modal-image-file').click()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;color:var(--text3)"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p style="font-size:12px;color:var(--text3);margin-top:8px;letter-spacing:1px">Appuyer pour choisir une photo</p>
+            <p style="font-size:11px;color:var(--text3);margin-top:4px">JPG, PNG, WEBP</p>
+          </div>
+        </div>
+        <div id="img-tab-url" style="display:none">
+          <input class="form-input" id="modal-image" placeholder="https://drive.google.com/file/d/... ou lien direct" oninput="previewImage(this.value)">
+          <div class="form-hint">Google Drive et Google Photos sont convertis automatiquement</div>
+        </div>
         <div class="image-preview" id="modal-img-preview">
           <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase">Aperçu photo</span>
         </div>
@@ -1557,6 +1624,79 @@ function closeProductModal() {
   document.getElementById('product-modal').classList.remove('open');
 }
 
+function switchImgTab(tab) {
+  document.getElementById('img-tab-upload').style.display = tab === 'upload' ? 'block' : 'none';
+  document.getElementById('img-tab-url').style.display = tab === 'url' ? 'block' : 'none';
+  document.getElementById('tab-upload').classList.toggle('active', tab === 'upload');
+  document.getElementById('tab-url').classList.toggle('active', tab === 'url');
+}
+
+async function handleImageUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const zone = document.querySelector('.upload-zone');
+  zone.classList.add('uploading');
+  zone.innerHTML = '<p style="font-size:12px;color:var(--text3);letter-spacing:1px">Envoi en cours...</p>';
+
+  try {
+    // Compresser l'image avant upload
+    const compressed = await compressImage(file, 1200, 0.82);
+    const base64 = compressed.split(',')[1];
+    const fileName = 'images/uploads/' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+
+    const GITHUB_TOKEN = sessionStorage.getItem('hom-gh-token');
+    const apiUrl = `https://api.github.com/repos/Roodj0827/house-ofmeila/contents/${fileName}`;
+
+    const res = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'token ' + GITHUB_TOKEN,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Upload image: ' + file.name,
+        content: base64,
+        branch: 'main'
+      })
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const imageUrl = data.content.download_url;
+      document.getElementById('modal-image').value = imageUrl;
+      previewImage(imageUrl);
+      showToast('Photo uploadée avec succès', 'success');
+    } else {
+      showToast('Erreur upload — essayez avec un lien URL', 'error');
+    }
+  } catch(e) {
+    showToast('Erreur upload: ' + e.message, 'error');
+  }
+
+  zone.classList.remove('uploading');
+  zone.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:32px;height:32px;color:var(--text3)"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><p style="font-size:12px;color:var(--text3);margin-top:8px;letter-spacing:1px">Appuyer pour choisir une photo</p><p style="font-size:11px;color:var(--text3);margin-top:4px">JPG, PNG, WEBP</p>`;
+}
+
+function compressImage(file, maxWidth, quality) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let w = img.width, h = img.height;
+        if (w > maxWidth) { h = Math.round(h * maxWidth / w); w = maxWidth; }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
 function previewImage(url) {
   const converted = convertImageUrl(url);
   const preview = document.getElementById('modal-img-preview');
@@ -1564,6 +1704,76 @@ function previewImage(url) {
     preview.innerHTML = `<img src="${converted}" alt="Aperçu" onerror="this.parentNode.innerHTML='<span style=\\'font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3)\\'>URL invalide</span>'">`;
   } else {
     preview.innerHTML = '<span style="font-size:11px;letter-spacing:2px;text-transform:uppercase">Aperçu photo</span>';
+  }
+}
+
+function handleFileUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  // Compress and convert to base64
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement('canvas');
+      const MAX = 1200;
+      let w = img.width, h = img.height;
+      if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      const compressed = canvas.toDataURL('image/jpeg', 0.85);
+      // Upload to GitHub as image file
+      uploadImageToGitHub(compressed, file.name);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function uploadImageToGitHub(base64Data, fileName) {
+  const GITHUB_TOKEN = sessionStorage.getItem('hom-gh-token');
+  const GITHUB_USER  = 'Roodj0827';
+  const GITHUB_REPO  = 'house-ofmeila';
+  const GITHUB_BRANCH = 'main';
+
+  if (!GITHUB_TOKEN) { showToast('Token GitHub manquant', 'error'); return; }
+
+  showToast('Upload en cours...', 'info');
+
+  // Clean filename
+  const cleanName = 'images/uploads/' + Date.now() + '-' + fileName.replace(/[^a-zA-Z0-9.-]/g, '_');
+  const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${cleanName}`;
+
+  // Strip base64 header
+  const b64 = base64Data.split(',')[1];
+
+  try {
+    const res = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'token ' + GITHUB_TOKEN,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Upload image: ' + fileName,
+        content: b64,
+        branch: GITHUB_BRANCH
+      })
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const imageUrl = data.content.download_url;
+      document.getElementById('modal-image').value = imageUrl;
+      previewImage(imageUrl);
+      showToast('Photo uploadée avec succès !', 'success');
+    } else {
+      showToast('Erreur upload image', 'error');
+    }
+  } catch(e) {
+    showToast('Erreur de connexion', 'error');
   }
 }
 
@@ -1702,6 +1912,35 @@ async function initApp() {
   setTimeout(() => {
     document.getElementById('loading').classList.add('hidden');
   }, 600);
+}
+
+// SIDEBAR MOBILE TOGGLE
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  const isOpen = sidebar.classList.contains('open');
+  if (isOpen) {
+    sidebar.classList.remove('open');
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  } else {
+    sidebar.classList.add('open');
+    overlay.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+// Fermer sidebar après navigation sur mobile
+const origGoTo = goTo;
+function goTo(page) {
+  origGoTo(page);
+  if (window.innerWidth <= 768) {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    sidebar.classList.remove('open');
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
 }
 
 // Démarrage
