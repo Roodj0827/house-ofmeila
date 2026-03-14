@@ -1909,7 +1909,7 @@ function openCatManager() {
   const list = document.getElementById('cat-manager-list');
 
   if (cats.length === 0) {
-    list.innerHTML = '<p style="color:var(--text3);font-size:13px;text-align:center;padding:20px 0">Aucune catégorie pour l'instant</p>';
+    list.innerHTML = "<p style='color:var(--text3);font-size:13px;text-align:center;padding:20px 0'>Aucune catégorie pour l’instant</p>";
   } else {
     list.innerHTML = cats.map(c => {
       const count = products.filter(p => p.category === c).length;
