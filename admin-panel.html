@@ -897,45 +897,6 @@ body {
 }
 .btn-danger:hover { background: #E07070; color: white; }
 
-/* ═══════════════════════════════════════════
-   LOADING
-═══════════════════════════════════════════ */
-.loading-overlay {
-  position: fixed; inset: 0;
-  background: var(--bg);
-  z-index: 2000;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 20px;
-  transition: opacity 0.4s ease;
-}
-.loading-overlay.hidden { opacity: 0; pointer-events: none; }
-.loading-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
-  font-weight: 300;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.loading-bar {
-  width: 120px; height: 1px;
-  background: var(--border);
-  position: relative;
-  overflow: hidden;
-}
-.loading-bar::after {
-  content: '';
-  position: absolute;
-  left: -40%; top: 0; bottom: 0;
-  width: 40%;
-  background: var(--gold);
-  animation: loadBar 1.2s ease infinite;
-}
-@keyframes loadBar {
-  from { left: -40%; }
-  to { left: 140%; }
-}
-
 .mob-menu-btn {
   display: none;
   width: 40px; height: 40px;
@@ -982,12 +943,6 @@ body {
 </style>
 </head>
 <body>
-
-<!-- LOADING -->
-<div class="loading-overlay" id="loading">
-  <div class="loading-logo">HOM</div>
-  <div class="loading-bar"></div>
-</div>
 
 <!-- LOGIN -->
 <div id="login-screen">
@@ -2029,11 +1984,6 @@ async function initApp() {
     renderDashboard();
   } catch(e) {
     console.warn('initApp error:', e);
-  } finally {
-    // Toujours cacher le loading, même en cas d'erreur
-    setTimeout(() => {
-      document.getElementById('loading').classList.add('hidden');
-    }, 500);
   }
 }
 
@@ -2059,8 +2009,6 @@ if (sessionStorage.getItem('hom-admin-auth') === '1') {
   document.getElementById('login-screen').classList.add('hidden');
   document.getElementById('app').classList.add('visible');
   initApp();
-} else {
-  document.getElementById('loading').classList.add('hidden');
 }
 </script>
 </body>
