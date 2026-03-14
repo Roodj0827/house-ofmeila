@@ -1420,10 +1420,11 @@ function goTo(page) {
 // DATA LOADING
 // ═══════════════════════════════════════════
 async function loadData() {
+  const base = window.location.origin;
   try {
     const [pr, sr] = await Promise.all([
-      fetch('/data/products.json?t=' + Date.now()),
-      fetch('/data/settings.json?t=' + Date.now())
+      fetch(base + '/data/products.json?t=' + Date.now()),
+      fetch(base + '/data/settings.json?t=' + Date.now())
     ]);
     if (pr.ok) {
       const raw = await pr.json();
@@ -1432,7 +1433,8 @@ async function loadData() {
     }
     if (sr.ok) settings = await sr.json();
   } catch(e) {
-    showToast('Erreur de chargement des données', 'error');
+    // Données non disponibles — on continue quand même
+    console.warn('loadData error:', e);
   }
 }
 
@@ -2021,12 +2023,18 @@ function showSaveIndicator() {
 // INIT
 // ═══════════════════════════════════════════
 async function initApp() {
-  await loadData();
-  loadSettingsForm();
-  renderDashboard();
-  setTimeout(() => {
-    document.getElementById('loading').classList.add('hidden');
-  }, 600);
+  try {
+    await loadData();
+    loadSettingsForm();
+    renderDashboard();
+  } catch(e) {
+    console.warn('initApp error:', e);
+  } finally {
+    // Toujours cacher le loading, même en cas d'erreur
+    setTimeout(() => {
+      document.getElementById('loading').classList.add('hidden');
+    }, 500);
+  }
 }
 
 // SIDEBAR MOBILE TOGGLE
