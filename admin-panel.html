@@ -1108,6 +1108,7 @@ body {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Nouveau produit
         </button>
+  </div>
       </div>
       <div class="filter-tabs" id="filter-tabs"></div>
       <div class="products-grid" id="admin-products-grid"></div>
@@ -1228,7 +1229,7 @@ body {
         </div>
         <div class="form-field">
           <label class="form-label">Catégorie *</label>
-          <select class="form-select" id="modal-category">
+          <select class="form-select" id="modal-category" onchange="handleCategoryChange(this.value)">
             <option value="">Choisir...</option>
             <option value="jeu_de_bijoux">Jeu de bijoux</option>
             <option value="collier">Collier</option>
@@ -1239,8 +1240,12 @@ body {
             <option value="montre">Montre</option>
             <option value="valise">Valise</option>
             <option value="lunettes">Lunettes</option>
-            <option value="autres">Autres</option>
+            <option value="__custom__">+ Nouvelle catégorie...</option>
           </select>
+          <div id="custom-cat-field" style="display:none;margin-top:10px">
+            <input class="form-input" id="modal-category-custom" placeholder="Nom de la nouvelle catégorie">
+            <div class="form-hint">Ce nom s'affichera tel quel sur le site</div>
+          </div>
         </div>
       </div>
       <div class="form-field">
@@ -1294,6 +1299,22 @@ body {
     <div class="confirm-actions">
       <button class="btn-secondary" onclick="closeConfirm()">Annuler</button>
       <button class="btn-danger" id="confirm-ok-btn">Supprimer</button>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY MANAGER -->
+<div class="modal-overlay" id="cat-manager-modal" onclick="if(event.target===this)closeCatManager()">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-header">
+      <div class="modal-title">Catégories</div>
+      <button class="modal-close" onclick="closeCatManager()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:12px;color:var(--text3);letter-spacing:0.5px;margin-bottom:20px">Les catégories ci-dessous sont utilisées par tes produits. Supprimer une catégorie réassigne ses produits à "Autres".</p>
+      <div id="cat-manager-list"></div>
     </div>
   </div>
 </div>
@@ -1388,6 +1409,11 @@ function goTo(page) {
   if (page === 'preview') loadPreview();
   if (page === 'dashboard') renderDashboard();
   if (page === 'products') renderProducts();
+  // Fermer sidebar sur mobile
+  if (window.innerWidth <= 768) {
+    document.getElementById('sidebar').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 }
 
 // ═══════════════════════════════════════════
@@ -1596,15 +1622,57 @@ function setFilter(cat, btn) {
 // ═══════════════════════════════════════════
 // MODAL PRODUIT
 // ═══════════════════════════════════════════
+// Catégories de base (fixes)
+const BASE_CATS = ['jeu_de_bijoux','collier','bracelet','bague','chevillere','tour_de_cou','montre','valise','lunettes'];
+
+function handleCategoryChange(val) {
+  const customField = document.getElementById('custom-cat-field');
+  if (val === '__custom__') {
+    customField.style.display = 'block';
+    document.getElementById('modal-category-custom').focus();
+  } else {
+    customField.style.display = 'none';
+    document.getElementById('modal-category-custom').value = '';
+  }
+}
+
+function setCategoryInModal(cat) {
+  const select = document.getElementById('modal-category');
+  const customField = document.getElementById('custom-cat-field');
+  // Check if it's a base cat
+  const isBase = BASE_CATS.includes(cat);
+  if (isBase || cat === '') {
+    select.value = cat;
+    customField.style.display = 'none';
+  } else {
+    // It's a custom category - show as custom
+    // Add it to select options if not there
+    let found = false;
+    for (let opt of select.options) { if (opt.value === cat) { found = true; break; } }
+    if (!found) {
+      const opt = document.createElement('option');
+      opt.value = cat; opt.textContent = cat;
+      // Insert before the "+ Nouvelle catégorie..." option
+      select.insertBefore(opt, select.lastElementChild);
+    }
+    select.value = cat;
+    customField.style.display = 'none';
+  }
+}
+
 function openProductModal(id) {
   document.getElementById('modal-product-id').value = id || '';
+  // Reset custom category field
+  document.getElementById('custom-cat-field').style.display = 'none';
+  document.getElementById('modal-category-custom').value = '';
+
   if (id) {
     const p = products.find(x => x.id === id);
     if (!p) return;
     document.getElementById('modal-title').textContent = 'Modifier le produit';
     document.getElementById('modal-name').value = p.name || '';
     document.getElementById('modal-price').value = p.price || '';
-    document.getElementById('modal-category').value = p.category || '';
+    setCategoryInModal(p.category || '');
     document.getElementById('modal-desc').value = p.desc || '';
     document.getElementById('modal-image').value = p.image || '';
     previewImage(p.image);
@@ -1781,7 +1849,10 @@ async function saveProduct() {
   const id = document.getElementById('modal-product-id').value;
   const name = document.getElementById('modal-name').value.trim();
   const price = document.getElementById('modal-price').value;
-  const category = document.getElementById('modal-category').value;
+  let category = document.getElementById('modal-category').value;
+  if (category === '__custom__') {
+    category = document.getElementById('modal-category-custom').value.trim();
+  }
 
   if (!name || !price || !category) {
     showToast('Veuillez remplir les champs obligatoires', 'error');
@@ -1887,6 +1958,50 @@ function reloadPreview() {
 // ═══════════════════════════════════════════
 // UI HELPERS
 // ═══════════════════════════════════════════
+// ═══════════════════════════════════════════
+// GESTIONNAIRE DE CATÉGORIES
+// ═══════════════════════════════════════════
+function openCatManager() {
+  const cats = [...new Set(products.map(p => p.category).filter(Boolean))];
+  const list = document.getElementById('cat-manager-list');
+
+  if (cats.length === 0) {
+    list.innerHTML = '<p style="color:var(--text3);font-size:13px;text-align:center;padding:20px 0">Aucune catégorie pour l'instant</p>';
+  } else {
+    list.innerHTML = cats.map(c => {
+      const count = products.filter(p => p.category === c).length;
+      const isBase = BASE_CATS.includes(c);
+      return `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border2)">
+        <div>
+          <div style="font-size:14px;color:var(--text)">${CAT_LABELS[c] || c}</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:3px">${count} produit${count>1?'s':''}</div>
+        </div>
+        ${isBase
+          ? '<span style="font-size:10px;letter-spacing:1px;color:var(--text3);text-transform:uppercase">Fixe</span>'
+          : `<button class="btn-danger" style="padding:7px 14px;font-size:10px" onclick="deleteCategory('${c}')">Supprimer</button>`
+        }
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('cat-manager-modal').classList.add('open');
+}
+
+function closeCatManager() {
+  document.getElementById('cat-manager-modal').classList.remove('open');
+}
+
+async function deleteCategory(cat) {
+  const count = products.filter(p => p.category === cat).length;
+  // Reassign products to 'autres'
+  products = products.map(p => p.category === cat ? {...p, category: 'autres'} : p);
+  await saveProducts();
+  closeCatManager();
+  renderProducts();
+  renderDashboard();
+  showToast(`Catégorie supprimée — ${count} produit${count>1?'s':''} déplacé${count>1?'s':''} vers "Autres"`, 'success');
+}
+
 function showToast(msg, type = 'info') {
   const container = document.getElementById('toast-container');
   const toast = document.createElement('div');
@@ -1927,19 +2042,6 @@ function toggleSidebar() {
     sidebar.classList.add('open');
     overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
-  }
-}
-
-// Fermer sidebar après navigation sur mobile
-const origGoTo = goTo;
-function goTo(page) {
-  origGoTo(page);
-  if (window.innerWidth <= 768) {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    sidebar.classList.remove('open');
-    overlay.style.display = 'none';
-    document.body.style.overflow = '';
   }
 }
 
