@@ -553,24 +553,29 @@ body {
 .pca-img-placeholder svg { width: 32px; height: 32px; }
 
 .pca-actions {
-  position: absolute;
-  top: 10px; right: 10px;
-  display: flex; gap: 6px;
-  opacity: 1;
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
 }
 .pca-action-btn {
-  width: 32px; height: 32px;
-  background: var(--overlay);
+  flex: 1;
+  height: 36px;
+  background: transparent;
   border: 1px solid var(--border);
-  color: var(--text);
+  color: var(--text2);
   display: flex; align-items: center; justify-content: center;
+  gap: 6px;
   cursor: pointer;
   transition: all var(--transition);
-  backdrop-filter: blur(4px);
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 .pca-action-btn:hover { background: var(--gold); color: #0A0A0A; border-color: var(--gold); }
-.pca-action-btn.delete:hover { background: #E07070; border-color: #E07070; }
-.pca-action-btn svg { width: 14px; height: 14px; }
+.pca-action-btn.delete { border-color: rgba(224,112,112,0.3); color: #E07070; }
+.pca-action-btn.delete:hover { background: #E07070; border-color: #E07070; color: white; }
+.pca-action-btn svg { width: 13px; height: 13px; }
 
 .pca-body { padding: 18px; }
 .pca-cat {
