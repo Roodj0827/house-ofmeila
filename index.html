@@ -6,20 +6,9 @@
 <title>House of Meila — Bijoux & Art de Vivre</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
+
 <!-- ANNOUNCEMENT -->
 <div id="announcement-bar">
   <span id="announcement-text"></span>
@@ -31,9 +20,9 @@
   <button class="mob-drawer-close" onclick="closeMobMenu()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
-  <div class="mob-nav-link" onclick="scrollTo('about');closeMobMenu()">Notre Maison</div>
-  <div class="mob-nav-link" onclick="scrollTo('catalogue');closeMobMenu()">Catalogue</div>
-  <div class="mob-nav-link" onclick="scrollTo('catalogue');closeMobMenu()">Bijoux</div>
+  <div class="mob-nav-link" onclick="scrollToSection('about');closeMobMenu()">Notre Maison</div>
+  <div class="mob-nav-link" onclick="scrollToSection('catalogue');closeMobMenu()">Catalogue</div>
+  <div class="mob-nav-link" onclick="scrollToSection('catalogue');closeMobMenu()">Bijoux</div>
   <div class="mob-nav-link" onclick="openWhatsApp('Bonjour, je voudrais des informations sur vos produits.')">Nous contacter</div>
   <div style="margin-top:auto">
     <a id="mob-wa-btn" href="#" class="btn-whatsapp" style="width:100%;justify-content:center;margin-top:20px">
@@ -53,9 +42,9 @@
     </div>
   </div>
   <div class="nav-links">
-    <span class="nav-link" onclick="scrollTo('about')">Notre Maison</span>
-    <span class="nav-link" onclick="scrollTo('catalogue')">Catalogue</span>
-    <span class="nav-link" onclick="scrollTo('catalogue')">Bijoux</span>
+    <span class="nav-link" onclick="scrollToSection('about')">Notre Maison</span>
+    <span class="nav-link" onclick="scrollToSection('catalogue')">Catalogue</span>
+    <span class="nav-link" onclick="scrollToSection('catalogue')">Bijoux</span>
     <span class="nav-link" onclick="openWhatsApp('Bonjour, je voudrais plus d\'informations.')">Contact</span>
   </div>
   <button class="nav-cta" id="nav-wa-btn" onclick="openWhatsApp('Bonjour, je voudrais des informations sur vos produits.')">
@@ -82,11 +71,11 @@
       Bienvenue chez <strong>House of Meila</strong>. Une maison dédiée à la beauté, au raffinement et à l'art de vous parer. Des bijoux soigneusement sélectionnés, pour chaque occasion.
     </p>
     <div class="hero-actions anim-fade-up-4">
-      <button class="btn-hero-primary" onclick="scrollTo('catalogue')">
+      <button class="btn-hero-primary" onclick="scrollToSection('catalogue')">
         Découvrir la collection
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
-      <button class="btn-hero-secondary" onclick="scrollTo('about')">
+      <button class="btn-hero-secondary" onclick="scrollToSection('about')">
         Notre histoire
       </button>
     </div>
@@ -261,9 +250,9 @@
     <div>
       <div class="footer-col-title">Navigation</div>
       <span class="footer-col-link" onclick="window.scrollTo({top:0,behavior:'smooth'})">Accueil</span>
-      <span class="footer-col-link" onclick="scrollTo('about')">Notre Maison</span>
-      <span class="footer-col-link" onclick="scrollTo('catalogue')">Catalogue</span>
-      <span class="footer-col-link" onclick="scrollTo('catalogue')">Bijoux</span>
+      <span class="footer-col-link" onclick="scrollToSection('about')">Notre Maison</span>
+      <span class="footer-col-link" onclick="scrollToSection('catalogue')">Catalogue</span>
+      <span class="footer-col-link" onclick="scrollToSection('catalogue')">Bijoux</span>
     </div>
     <div>
       <div class="footer-col-title">Nous contacter</div>
