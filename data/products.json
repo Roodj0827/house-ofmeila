@@ -5,6 +5,13 @@
       "price": 1250,
       "category": "jeu_de_bijoux",
       "image": "https://drive.google.com/file/d/1HmAz_FCDSrQCubCcW3PdPMlp9DFyKg8a/view?usp=drivesdk"
+    },
+    {
+      "name": "Collier",
+      "price": 350,
+      "category": "collier",
+      "desc": "Nice",
+      "image": "https://share.google/kgX4gw9TUHbcU5930"
     }
   ]
 }
