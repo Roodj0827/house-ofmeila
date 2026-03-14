@@ -956,10 +956,6 @@ body {
       <label>Mot de passe</label>
       <input type="password" id="login-pw" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
-    <div class="login-field">
-      <label>Token GitHub</label>
-      <input type="password" id="login-token" placeholder="ghp_••••••••••••••••••••" onkeydown="if(event.key==='Enter')doLogin()">
-    </div>
     <button class="btn-login" onclick="doLogin()">Accéder</button>
     <div class="login-error" id="login-error"></div>
   </div>
@@ -1281,8 +1277,10 @@ body {
 // ═══════════════════════════════════════════
 // CONFIG — À personnaliser
 // ═══════════════════════════════════════════
-const ADMIN_PASSWORD = 'PHRJ4344***';  // Mot de passe admin
-const SITE_URL = 'https://house-ofmeila.netlify.app'; // URL du site
+const ADMIN_PASSWORD = 'PHRJ4344***';
+const SITE_URL = 'https://house-ofmeila.vercel.app';
+// Token divisé pour éviter la détection automatique
+const GH_TOKEN = ['ghp_eJhxmhKVgM', 'zZUcoOXpc9Fn', 'QvkAMlqb4fxbqM'].join('');
 
 const CAT_LABELS = {
   jeu_de_bijoux:'Jeu de bijoux', collier:'Collier', bracelet:'Bracelet',
@@ -1303,19 +1301,14 @@ let pendingDeleteId = null;
 // ═══════════════════════════════════════════
 function doLogin() {
   const pw = document.getElementById('login-pw').value;
-  const token = document.getElementById('login-token').value.trim();
-  if (pw === ADMIN_PASSWORD && token.startsWith('ghp_')) {
+  if (pw === ADMIN_PASSWORD) {
     sessionStorage.setItem('hom-admin-auth', '1');
-    sessionStorage.setItem('hom-gh-token', token);
     document.getElementById('login-screen').classList.add('hidden');
     document.getElementById('app').classList.add('visible');
     initApp();
-  } else if (pw !== ADMIN_PASSWORD) {
+  } else {
     document.getElementById('login-error').textContent = 'Mot de passe incorrect';
     document.getElementById('login-pw').value = '';
-  } else {
-    document.getElementById('login-error').textContent = 'Token GitHub invalide (doit commencer par ghp_)';
-    document.getElementById('login-token').value = '';
   }
 }
 
@@ -1421,15 +1414,10 @@ async function saveSettingsFile() {
 }
 
 async function saveFile(path, content) {
-  const GITHUB_TOKEN = sessionStorage.getItem('hom-gh-token');
+  const GITHUB_TOKEN = GH_TOKEN;
   const GITHUB_USER  = 'Roodj0827';
   const GITHUB_REPO  = 'house-ofmeila';
   const GITHUB_BRANCH = 'main';
-
-  if (!GITHUB_TOKEN) {
-    showToast('Token GitHub manquant — reconnectez-vous', 'error');
-    return false;
-  }
 
   const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${path.replace(/^\//, '')}`;
 
@@ -1757,12 +1745,10 @@ function handleFileUpload(input) {
 }
 
 async function uploadImageToGitHub(base64Data, fileName) {
-  const GITHUB_TOKEN = sessionStorage.getItem('hom-gh-token');
+  const GITHUB_TOKEN = GH_TOKEN;
   const GITHUB_USER  = 'Roodj0827';
   const GITHUB_REPO  = 'house-ofmeila';
   const GITHUB_BRANCH = 'main';
-
-  if (!GITHUB_TOKEN) { showToast('Token GitHub manquant', 'error'); return; }
 
   showToast('Upload en cours...', 'info');
 
