@@ -1,10 +1,11 @@
 {
   "items": [
     {
-      "name": "Bijoux en cœur ",
-      "price": 1250,
-      "category": "jeu_de_bijoux",
-      "image": "https://drive.google.com/file/d/1HmAz_FCDSrQCubCcW3PdPMlp9DFyKg8a/view?usp=drivesdk"
+      "name": "Collier pendentif Coeur",
+      "price": 1000,
+      "category": "collier",
+      "desc": "Collier pendentif Coeur en nacre",
+      "image": "https://i.etsystatic.com/33805471/r/il/701ed3/5642183532/il_fullxfull.5642183532_ha6l.jpg"
     }
   ]
 }
