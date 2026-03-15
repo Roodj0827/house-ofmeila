@@ -41,6 +41,13 @@
       "category": "collier",
       "desc": "Colier en acier pour femme inoxydable",
       "image": "https://i.pinimg.com/1200x/88/08/cf/8808cf21c6239846ba676a8a0d7b284f.jpg"
+    },
+    {
+      "name": "Jeu de bijoux femme",
+      "price": 1500,
+      "category": "jeu_de_bijoux",
+      "desc": "jeu de bijoux pour femme disponibles en or, en argent et en brune également",
+      "image": "https://i.pinimg.com/1200x/89/75/c7/8975c7c4ac25b5f06e054ee2b78a2d56.jpg"
     }
   ]
 }
