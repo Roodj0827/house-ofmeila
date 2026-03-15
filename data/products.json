@@ -1,11 +1,11 @@
 {
   "items": [
     {
-      "name": "Collier pendentif Coeur",
-      "price": 1000,
-      "category": "collier",
-      "desc": "Collier pendentif Coeur en nacre",
-      "image": "https://i.etsystatic.com/33805471/r/il/701ed3/5642183532/il_fullxfull.5642183532_ha6l.jpg"
+      "name": "Collier pendentif Cœur",
+      "price": 1500,
+      "category": "jeu_de_bijoux",
+      "desc": "Collier pendentif Coeur en acier accompagné d'un boucle d'oreilles et d'un bracelet",
+      "image": "https://i.pinimg.com/1200x/58/ee/15/58ee1517c3246e5ba443922bb087d006.jpg"
     }
   ]
 }
