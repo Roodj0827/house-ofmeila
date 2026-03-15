@@ -13,6 +13,13 @@
       "category": "jeu_de_bijoux",
       "desc": "Bijoux pour hommes en acier inoxydable",
       "image": "https://i.pinimg.com/1200x/7b/be/9d/7bbe9d4dfd174a020e771f23389bfb3a.jpg"
+    },
+    {
+      "name": "Twisted Rope Chain",
+      "price": 750,
+      "category": "collier",
+      "desc": "Colier mixte en or de style corde",
+      "image": "https://i.pinimg.com/736x/fd/93/a4/fd93a46f9d6bf80ad184ca584a459645.jpg"
     }
   ]
 }
