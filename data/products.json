@@ -4,7 +4,7 @@
       "name": "Collier pendentif Cœur",
       "price": 1500,
       "category": "jeu_de_bijoux",
-      "desc": "Collier pendentif Cœur en acier accompagné d'un boucle d'oreilles et d'un bracelet",
+      "desc": "Collier pendentif Coeur en acier accompagné d'un boucle d'oreilles et d'un bracelet",
       "image": "https://i.pinimg.com/1200x/58/ee/15/58ee1517c3246e5ba443922bb087d006.jpg"
     },
     {
@@ -90,6 +90,13 @@
       "category": "lunettes",
       "desc": "Nous tenons à préciser que ces paires de lunedttes sont très petits",
       "image": "https://i.pinimg.com/736x/df/f4/55/dff45560df3078beabdcd9b17d8010f3.jpg"
+    },
+    {
+      "name": "Lunettes fantaisie",
+      "price": 1000,
+      "category": "lunettes",
+      "desc": "cette photo est un exemple de nos modèles disponibles,d'autres couleurs sont disponibles",
+      "image": "https://i.pinimg.com/736x/a7/66/02/a766023857c1e6fb5657507f4e811d3e.jpg"
     }
   ]
 }
