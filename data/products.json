@@ -104,6 +104,13 @@
       "category": "lunettes",
       "desc": "D'autres couleurs sont disponibles",
       "image": "https://i.pinimg.com/1200x/58/ec/29/58ec29ea5c67f5bd7bf72c3f0a13c41b.jpg"
+    },
+    {
+      "name": "Montre Intelligent",
+      "price": 2500,
+      "category": "montre",
+      "desc": "Montre Intelligent couleur marron disponible",
+      "image": "https://i.pinimg.com/1200x/6a/a8/3d/6aa83d169c684beab2e9f2a6bd24e806.jpg"
     }
   ]
 }
