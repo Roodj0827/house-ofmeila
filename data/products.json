@@ -132,6 +132,13 @@
       "category": "jeu_de_bijoux",
       "desc": "soyez fan du luxe",
       "image": "https://mysmartbazaar.com/cdn/shop/files/DY-CB-MIX-40212-M-5-2x.jpg?v=1736501051&width=800"
+    },
+    {
+      "name": "Bijoux pour femme",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "jeu de nijoux pour femme pas commun",
+      "image": "https://img.leboncoin.fr/api/v1/lbcpb1/images/d7/b1/ee/d7b1ee5cb3970674ba6b083ed3710d2428f23816.jpg?rule=ad-large"
     }
   ]
 }
