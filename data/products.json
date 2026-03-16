@@ -69,6 +69,13 @@
       "category": "bracelet",
       "desc": "Bracelet en acier inoxydable",
       "image": "https://i.pinimg.com/1200x/fc/6f/37/fc6f37d5624c900179a23c97f23230da.jpg"
+    },
+    {
+      "name": "Bangles Bracelets",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Bracelet Bangles en acier inoxydable",
+      "image": "https://i.pinimg.com/1200x/a0/79/de/a079deebfc1654adc5afbedadc76eb90.jpg"
     }
   ]
 }
