@@ -111,6 +111,13 @@
       "category": "montre",
       "desc": "Montre Intelligent couleur marron disponible",
       "image": "https://i.pinimg.com/1200x/6a/a8/3d/6aa83d169c684beab2e9f2a6bd24e806.jpg"
+    },
+    {
+      "name": "Collier/Bracelet cœurs d'or",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "Jeu de bijoux pour femmes",
+      "image": "https://ae01.alicdn.com/kf/S3b9db4ff555a4ee4be6b4d6579d73fe1Q.jpeg"
     }
   ]
 }
