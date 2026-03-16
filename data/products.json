@@ -62,6 +62,13 @@
       "category": "jeu_de_bijoux",
       "desc": "collier et braceket avec christaux ovales verts",
       "image": "https://i.pinimg.com/736x/72/8e/46/728e46732c1ff43153f7ffd41f7dc4f3.jpg"
+    },
+    {
+      "name": "Statement Bangle Bracelet",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Bracelet en acier inoxydable",
+      "image": "https://i.pinimg.com/1200x/fc/6f/37/fc6f37d5624c900179a23c97f23230da.jpg"
     }
   ]
 }
