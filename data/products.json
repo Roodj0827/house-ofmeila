@@ -83,6 +83,13 @@
       "category": "bracelet",
       "desc": "Cute Bangle Bracelet",
       "image": "https://i.pinimg.com/736x/cc/e9/f7/cce9f7bb0b3bd0d8a50094f8ee8fdabe.jpg"
+    },
+    {
+      "name": "Mini Lunettes anti bleu",
+      "price": 500,
+      "category": "lunettes",
+      "desc": "Nous tenons à préciser que ces paires de lunedttes sont très petits",
+      "image": "https://i.pinimg.com/736x/df/f4/55/dff45560df3078beabdcd9b17d8010f3.jpg"
     }
   ]
 }
