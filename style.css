@@ -722,12 +722,61 @@ footer{
   .nav-cta{display:none}
   .mob-menu-btn{display:block}
 }
+/* ─── MODIFICATIONS POUR MOBILE (À INSERER DANS TON @MEDIA EXISTANT) ─── */
+
 @media(max-width:600px){
-  .hero-stats{gap:20px}
-  .footer-top{grid-template-columns:1fr}
-  .products-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
-  .filter-bar{gap:6px}
-  .filter-btn{padding:7px 13px;font-size:8.5px}
-  .about-pillars{grid-template-columns:1fr}
-  #about{padding:60px 20px}
- }
+
+  /* 1. Améliorer l'espacement global sur mobile */
+  #catalogue {
+    padding: 60px 15px; /* Moins de padding latéral pour gagner de l'espace */
+  }
+
+  /* 2. Optimiser l'affichage de la carte produit */
+  .product-card-body {
+    padding: 15px; /* Padding interne légèrement réduit */
+  }
+
+  /* 3. Reduire la taille du texte pour qu'il rentre mieux */
+  .product-card-name {
+    font-size: 16px; /* Légèrement plus petit */
+    margin-bottom: 5px;
+  }
+
+  .product-card-cat {
+    font-size: 8px; /* Un poil plus petit */
+    margin-bottom: 5px;
+  }
+
+  /* 4. LE CŒUR DE LA SOLUTION : Empiler le prix et le bouton */
+  .product-card-footer {
+    display: flex;
+    flex-direction: column; /* Empile verticalement */
+    align-items: flex-start; /* Aligne tout à gauche */
+    gap: 12px; /* Espace entre le prix et le bouton */
+    padding-top: 15px;
+    margin-top: auto;
+  }
+
+  /* 5. Aligner le prix */
+  .product-card-price {
+    font-size: 20px; /* Légèrement plus petit pour la grille de 2 */
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 0; /* Important si tu empiles */
+  }
+
+  /* 6. Optimiser le bouton pour la grille de 2 */
+  .btn-whatsapp {
+    width: 100%; /* Prend toute la largeur de la carte */
+    justify-content: center; /* Centre l'icône et le texte */
+    padding: 11px 12px; /* Padding équilibré */
+    font-size: 8.5px; /* Réduire pour que le texte long "INFO / COMMANDE" rentre sur une ligne */
+    letter-spacing: 0.1em; /* Réduire légèrement l'espacement pour gagner de la place */
+  }
+
+  .btn-whatsapp svg {
+    width: 13px; /* Icône légèrement plus petite */
+    height: 13px;
+  }
+}
