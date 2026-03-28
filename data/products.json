@@ -209,7 +209,13 @@
       "category": "bracelet",
       "desc": "Bracelet Manchette Minimaliste en Or pour le Bras Supérieur, Bracelet Féminin Empilable et Délicat",
       "image": "https://m.media-amazon.com/images/I/516OhVgGyNL._AC_SY535_.jpg"
+    },
+    {
+      "name": "Nex",
+      "price": 200,
+      "category": "bague",
+      "desc": "Nono",
+      "image": "https://pin.it/CLOiOMFGN"
     }
   ]
 }
-
