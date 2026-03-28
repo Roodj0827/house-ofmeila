@@ -1,13 +1,5 @@
 {
   "rewrites": [
     { "source": "/", "destination": "/index.html" }
-  ],
-  "buildCommand": null,
-  "devCommand": null,
-  "installCommand": null,
-  "framework": null,
-  "toolbarConfig": {
-    "show": false
-  }
+  ]
 }
-
