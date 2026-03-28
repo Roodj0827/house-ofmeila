@@ -725,9 +725,25 @@ footer{
 @media(max-width:600px){
   .hero-stats{gap:20px}
   .footer-top{grid-template-columns:1fr}
-  .products-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .filter-bar{gap:6px}
   .filter-btn{padding:7px 13px;font-size:8.5px}
   .about-pillars{grid-template-columns:1fr}
   #about{padding:60px 20px}
+  .product-card-body{padding:12px}
+  .product-card-cat{font-size:8px;margin-bottom:5px}
+  .product-card-name{font-size:14px;margin-bottom:6px;line-height:1.2}
+  .product-card-desc{font-size:11px;-webkit-line-clamp:2}
+  .product-card-footer{flex-direction:column;align-items:stretch;gap:10px;padding-top:10px}
+  .product-card-price{font-size:18px;line-height:1}
+  .product-card-price span{display:inline;font-size:10px;margin-left:3px}
+  .btn-whatsapp{width:100%;justify-content:center;padding:10px 12px;font-size:9px;letter-spacing:.12em;gap:5px}
+  .btn-whatsapp svg{width:13px;height:13px}
+}
+
+@media(max-width:400px){
+  .products-grid{grid-template-columns:1fr}
+  .product-card-img{aspect-ratio:3/2}
+  .product-card-name{font-size:16px}
+  .btn-whatsapp{padding:12px;font-size:10px}
 }
