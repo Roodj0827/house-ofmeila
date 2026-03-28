@@ -760,8 +760,18 @@ footer{
     padding: 10px 5px;
   }
 
-  /* Cacher les éléments trop encombrants sur petit mobile */
+  /* Cacher les éléments trop encombrants sur petit mobile 
   .product-card-desc {
     display: none; 
+  }*/
+  product-card-desc {
+    display: -webkit-box; /* Réactive l'affichage */
+    -webkit-line-clamp: 2; /* Limite à 2 lignes maximum pour éviter les cartes trop longues */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 11px; /* Réduit un peu la taille pour le mobile */
+    line-height: 1.4;
+    margin-bottom: 10px;
   }
+}
 }
