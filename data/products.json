@@ -223,6 +223,13 @@
       "category": "bracelet",
       "desc": "bracelet de bras doré minimaliste avec un motif de papillon papillon",
       "image": "https://cdn.dsmcdn.com/ty1730/prod/QC_PREP/20250819/02/1037e987-cb69-3376-a8a4-517ad9c68045/1_org_zoom.jpg"
+    },
+    {
+      "name": "Bracelet jonc",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Ce bracelet est un jonc ouvert plaqué or avec des extrémités en forme de goutte, souvent commercialisé comme un bracelet manchette réglable et minimaliste.",
+      "image": "https://m.media-amazon.com/images/I/51150DHsDPL._AC_SX385_.jpg"
     }
   ]
 }
