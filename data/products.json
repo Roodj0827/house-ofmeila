@@ -216,6 +216,13 @@
       "category": "bracelet",
       "desc": "bracelet manchette de style minimaliste en métal doré",
       "image": "https://img.kwcdn.com/product/fancy/ef3dc771-e97f-4f2a-917e-182f4350e434.jpg"
+    },
+    {
+      "name": "Butterfly Bracelet",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "bracelet de bras doré minimaliste avec un motif de papillon papillon",
+      "image": "https://cdn.dsmcdn.com/ty1730/prod/QC_PREP/20250819/02/1037e987-cb69-3376-a8a4-517ad9c68045/1_org_zoom.jpg"
     }
   ]
 }
