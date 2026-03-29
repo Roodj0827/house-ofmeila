@@ -95,14 +95,14 @@
       "name": "Lunettes fantaisie",
       "price": 1000,
       "category": "lunettes",
-      "desc": "cette photo est un exemple de nos modèles disponibles,d'autres couleurs sont disponibles",
+      "desc": "Ces lunettes sont une monture oversized (surdimensionnée) de forme carrée au style rétro-chic marqué.",
       "image": "https://i.pinimg.com/736x/a7/66/02/a766023857c1e6fb5657507f4e811d3e.jpg"
     },
     {
       "name": "Lunettes Fantaisie",
       "price": 750,
       "category": "lunettes",
-      "desc": "D'autres couleurs sont disponibles",
+      "desc": "Ces lunettes sont des lunettes de vue, caractérisées par une monture en acétate robuste de forme carrée surdimensionnée.",
       "image": "https://i.pinimg.com/1200x/58/ec/29/58ec29ea5c67f5bd7bf72c3f0a13c41b.jpg"
     },
     {
