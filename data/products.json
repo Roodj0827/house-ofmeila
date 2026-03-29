@@ -253,18 +253,18 @@
       "image": "https://m.media-amazon.com/images/I/51Bx3D9FhWL._AC_SY350_QL45_.jpg"
     },
     {
-      "name": "Boho Upper Arm Cuff Bracelet",
-      "price": 1000,
-      "category": "bracelet",
-      "desc": "",
-      "image": "https://m.media-amazon.com/images/I/51Bx3D9FhWL._AC_SY350_QL45_.jpg"
-    },
-    {
       "name": "Golden leaf shaped open cuff bracelet",
       "price": 1000,
       "category": "bracelet",
       "desc": "",
       "image": "https://img.kwcdn.com/product/fancy/2b952b7a-b148-492b-b10b-9e99d358914f.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp"
+    },
+    {
+      "name": "YUYASSJY minimalist gold arm cuff bracelet",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "",
+      "image": "https://m.media-amazon.com/images/I/51hfO6QiPXL._AC_UY1000_.jpg"
     }
   ]
 }
