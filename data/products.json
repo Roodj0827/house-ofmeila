@@ -307,6 +307,13 @@
       "category": "collier",
       "desc": "Colier mixte en or de style corde",
       "image": "https://i.pinimg.com/1200x/81/80/2c/81802c61e982f5a95c69c675e395c121.jpg"
+    },
+    {
+      "name": "chaîne à mailles cubaines",
+      "price": 1000,
+      "category": "jeu_de_bijoux",
+      "desc": "Ce collier est un modèle de chaîne gourmette cubaine pour homme en acier inoxydable.",
+      "image": "https://img.kwcdn.com/product/fancy/3d814d3c-2955-402e-bb2d-5ff82cc507e2.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp"
     }
   ]
 }
