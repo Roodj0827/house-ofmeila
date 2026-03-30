@@ -363,6 +363,13 @@
       "category": "bracelet",
       "desc": "Il s'agit d'un bracelet en acier inoxydable avec pendentif menottes monté sur une chaîne gourmette",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpWXbI2xM1X0911Z9A3J1InBpoXVKvbIM3xg&s"
+    },
+    {
+      "name": "Shiny Handcuff Pendant Necklace",
+      "price": 750,
+      "category": "collier",
+      "desc": "Ce collier est un bijou de type chaîne avec un pendentif en forme de menottes, souvent commercialisé comme un symbole d'amour, d'attachement ou de liberté.",
+      "image": "https://de.cwa.sellercloud.com/images/products/1521963.jpg"
     }
   ]
 }
