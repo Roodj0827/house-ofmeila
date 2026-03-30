@@ -342,6 +342,13 @@
       "category": "bague",
       "desc": "Il s'agit d'une bague ovale ouverte, souvent proposée en laiton doré ou en acier inoxydable dans un style bohème et minimaliste",
       "image": "https://ae01.alicdn.com/kf/S2e3721308a1c4cdcaab18f3ac39081b2C.jpg"
+    },
+    {
+      "name": "Bracelet menotte",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Il s'agit d'un bracelet en acier inoxydable avec pendentif menottes monté sur une chaîne gourmette",
+      "image": "https://laboutiquedubracelet.fr/cdn/shop/files/bracelet-menottes-en-acier-inoxydable-mixte-modele-steph-205049.jpg?v=1747732393&width=800"
     }
   ]
 }
