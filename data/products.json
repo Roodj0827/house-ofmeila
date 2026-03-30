@@ -335,6 +335,13 @@
       "category": "bracelet",
       "desc": "Ce produit est un bracelet pour homme en silicone et acier inoxydable avec une croix",
       "image": "https://silverwork-jewelers.myshopify.com/cdn/shop/products/Fate-Love-Silicone-Stainless-Steel-Cross-Bracelet-Bangle-For-Men-Silver-Gold-Black-Wristband-Masculine-Cool_7336f88b-1701-463e-97fe-199876909f24.jpg?v=1504785225"
+    },
+    {
+      "name": "bague ovale organique",
+      "price": 500,
+      "category": "bague",
+      "desc": "Il s'agit d'une bague ovale ouverte, souvent proposée en laiton doré ou en acier inoxydable dans un style bohème et minimaliste",
+      "image": "https://ae01.alicdn.com/kf/S2e3721308a1c4cdcaab18f3ac39081b2C.jpg"
     }
   ]
 }
