@@ -405,6 +405,13 @@
       "category": "bague",
       "desc": "Cette bague est un modèle ajustable en forme de fleur en acier inoxydable doré.",
       "image": "https://ae01.alicdn.com/kf/S96bf913bbb8448ba8c27a8349fa679b0q.jpg"
+    },
+    {
+      "name": "bracelet jonc à chiffres romains",
+      "price": 750,
+      "category": "bracelet",
+      "desc": "Ce bracelet est un jonc en acier inoxydable plaqué or, arborant des chiffres romains gravés et des cristaux de zircone.",
+      "image": "https://sc04.alicdn.com/kf/H97c883293997480d90bf728e5cf56996e.jpg"
     }
   ]
 }
