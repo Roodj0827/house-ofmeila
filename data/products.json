@@ -398,6 +398,13 @@
       "category": "collier",
       "desc": "Ce collier pour homme est un modèle de pendentif barre verticale en acier inoxydable doré, souvent proposé avec une chaîne à maillons et une finition polie pour un rendu moderne et épuré.",
       "image": "https://ae01.alicdn.com/kf/S7a94012c9b1540ee9fc450a73f05b499Y.jpg_960x960.jpg"
+    },
+    {
+      "name": "Bague en forme de fleur",
+      "price": 500,
+      "category": "bague",
+      "desc": "Cette bague est un modèle ajustable en forme de fleur en acier inoxydable doré.",
+      "image": "https://ae01.alicdn.com/kf/S96bf913bbb8448ba8c27a8349fa679b0q.jpg"
     }
   ]
 }
