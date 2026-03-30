@@ -293,6 +293,13 @@
       "category": "collier",
       "desc": "Ce collier est un modèle de chaîne gourmette cubaine pour homme en acier inoxydable.",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNVtdsXxjMhunAJTaKoc_dW0K_5-rJmHUGkw&s"
+    },
+    {
+      "name": "Colier et bracelet en chaine Figaro",
+      "price": 1000,
+      "category": "jeu_de_bijoux",
+      "desc": "Bijoux pour hommes en acier inoxydable",
+      "image": "https://i.pinimg.com/736x/75/f1/4d/75f14ded8e4526be9f22447899b0ca3a.jpg"
     }
   ]
 }
