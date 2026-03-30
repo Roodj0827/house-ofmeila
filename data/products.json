@@ -40,7 +40,7 @@
       "price": 1250,
       "category": "jeu_de_bijoux",
       "desc": "Colier, bracelet en acier pour femme inoxydable",
-      "image": "https://i.pinimg.com/1200x/88/08/cf/8808cf21c6239846ba676a8a0d7b284f.jpg"
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_3PPrPAEYIFoHGD8RtnO4fviyChyHMbLg5w&s"
     },
     {
       "name": "Jeu de bijoux femme",
@@ -310,7 +310,7 @@
     },
     {
       "name": "Pure and Divine Cross Bracelet For Men",
-      "price": 1000,
+      "price": 750,
       "category": "bracelet",
       "desc": "Ce produit est un bracelet pour homme en silicone et acier inoxydable avec une croix.",
       "image": "https://silverwork-jewelers.myshopify.com/cdn/shop/products/v-Gold_Tone__-1753207510.jpg?v=1504785225"
@@ -338,21 +338,21 @@
     },
     {
       "name": "Bracelet menotte",
-      "price": 500,
+      "price": 1000,
       "category": "bracelet",
       "desc": "Il s'agit d'un bracelet en acier inoxydable avec pendentif menottes monté sur une chaîne gourmette",
       "image": "https://laboutiquedubracelet.fr/cdn/shop/files/bracelet-menottes-en-acier-inoxydable-mixte-modele-steph-205049.jpg?v=1747732393&width=800"
     },
     {
       "name": "Bracelet menotte",
-      "price": 500,
+      "price": 1000,
       "category": "bracelet",
       "desc": "Il s'agit d'un bracelet en acier inoxydable avec pendentif menottes monté sur une chaîne gourmette",
       "image": "https://laboutiquedubracelet.fr/cdn/shop/files/bracelet-menottes-en-acier-inoxydable-mixte-modele-steph-371745.jpg?v=1747732393&width=800"
     },
     {
       "name": "Bracelet menotte",
-      "price": 500,
+      "price": 1000,
       "category": "bracelet",
       "desc": "Il s'agit d'un bracelet en acier inoxydable avec pendentif menottes monté sur une chaîne gourmette",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpWXbI2xM1X0911Z9A3J1InBpoXVKvbIM3xg&s"
