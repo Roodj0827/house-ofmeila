@@ -377,6 +377,13 @@
       "category": "jeu_de_bijoux",
       "desc": "Cet ensemble de bijoux est une parure en acier inoxydable doré, comprenant un collier et des boucles d'oreilles avec des pendentifs en forme de cœur.",
       "image": "https://ci.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/58/027403/1.jpg?3767"
+    },
+    {
+      "name": "Montre Casio",
+      "price": 2500,
+      "category": "montre",
+      "desc": "Cette montre est une Casio de style vintage avec un boîtier carré doré et un cadran champagne.",
+      "image": "https://i.pinimg.com/736x/27/4b/e6/274be6743536026ef24046e0cfde8de5.jpg"
     }
   ]
 }
