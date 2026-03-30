@@ -370,6 +370,13 @@
       "category": "collier",
       "desc": "Il s'agit du collier pendentif cœur en nacre de la marque Divaura.",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt4mDN2uj05I77UN6rokjgJ46zYv-3fhFvSg&s"
+    },
+    {
+      "name": "Parure de bijoux cœur",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "Cet ensemble de bijoux est une parure en acier inoxydable doré, comprenant un collier et des boucles d'oreilles avec des pendentifs en forme de cœur.",
+      "image": "https://ci.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/58/027403/1.jpg?3767"
     }
   ]
 }
