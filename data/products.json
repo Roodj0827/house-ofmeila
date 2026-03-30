@@ -272,6 +272,20 @@
       "category": "bague",
       "desc": "bague ouverte de couleur dorée avec des motifs en forme de cœur remplis d'émail blanc",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq7PTRYV0qDVCwqlw6yYRFZf4BvM1LYSJjSQ&s"
+    },
+    {
+      "name": "Lover's Twist Ring",
+      "price": 500,
+      "category": "bague",
+      "desc": "Cette bague est un modèle ajustable en acier inoxydable avec une finition plaquée or et un motif en émail blanc",
+      "image": "https://letsbagitonline.com/cdn/shop/files/Untitleddesign-2025-04-09T113534.358.png?v=1744245543&width=1920"
+    },
+    {
+      "name": "Abbraccio Black",
+      "price": 500,
+      "category": "bague",
+      "desc": "Cette bague est une bague ajustable en acier inoxydable plaqué or de marque générique, dotée d'un motif émaillé noir",
+      "image": "https://tisa.co.in/cdn/shop/files/background-editor_output_11d04f39-0e3e-43ef-9fe1-9e4eb74eb2f9.png?v=1740238805"
     }
   ]
 }
