@@ -419,6 +419,13 @@
       "category": "montre",
       "desc": "montre intelligent compatible à ton portable",
       "image": "https://i.pinimg.com/736x/21/95/7f/21957f4fc701157cb78f2e37474deaab.jpg"
+    },
+    {
+      "name": "Smartwatch couleur jaune citron",
+      "price": 2250,
+      "category": "montre",
+      "desc": "Montre intelligent compatible à ton portable",
+      "image": "https://i.pinimg.com/1200x/32/4f/d1/324fd132fb32cfbd042ef48213b20b6a.jpg"
     }
   ]
 }
