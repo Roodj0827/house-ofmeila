@@ -412,6 +412,13 @@
       "category": "montre",
       "desc": "plain silicone watchband compatible with your phone",
       "image": "https://i.pinimg.com/1200x/a4/97/cc/a497cc7b8a4d4d1b039605edc68582a6.jpg"
+    },
+    {
+      "name": "Smartwatch couleur orange",
+      "price": 2250,
+      "category": "montre",
+      "desc": "montre intelligent compatible à ton portable",
+      "image": "https://i.pinimg.com/736x/21/95/7f/21957f4fc701157cb78f2e37474deaab.jpg"
     }
   ]
 }
