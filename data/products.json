@@ -426,6 +426,13 @@
       "category": "montre",
       "desc": "Montre intelligent compatible à ton portable",
       "image": "https://i.pinimg.com/1200x/32/4f/d1/324fd132fb32cfbd042ef48213b20b6a.jpg"
+    },
+    {
+      "name": "Smartwatch couleur rouge",
+      "price": 2250,
+      "category": "montre",
+      "desc": "montre intelligent couleur rouge compatible à ton portable",
+      "image": "https://i.pinimg.com/736x/81/c0/13/81c01364a3f28cad881ebd3009f5c9fe.jpg"
     }
   ]
 }
