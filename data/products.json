@@ -440,6 +440,13 @@
       "category": "Boucle d'oreilles",
       "desc": "Parfait pour sublimer votre style au quotidien ou en soirée",
       "image": "https://i.pinimg.com/1200x/91/d0/69/91d069ef4ce42b10abff9dcdc555028b.jpg"
+    },
+    {
+      "name": "Boucle d'oreilles en forme d'écaille",
+      "price": 500,
+      "category": "Boucle d'oreilles",
+      "desc": "Boucles d'oreilles en forme d'écaille pour plus de confiance",
+      "image": "https://i.pinimg.com/1200x/6a/95/2e/6a952efb8aebac37bf8dc8b2e998f69a.jpg"
     }
   ]
 }
