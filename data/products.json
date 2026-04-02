@@ -381,7 +381,7 @@
     {
       "name": "Boucles d'oreilles fleur cerisier doré",
       "price": 500,
-      "category": "Boucle d'oreilles",
+      "category": "boucles",
       "desc": "Ces boucles d'oreilles dorées sont le modèle \"Gold flower EARRINGS\" de Five Fashion Concept Store, fabriquées en acier inoxydable durable.",
       "image": "https://eproshopping.cloud/media/4797e2fd8b2a73aa54dce18ee5f6fd3db5fdc0ad/produit/655423961f523e01b3ff32bfca024acfc0940c18-lg.jpg"
     },
@@ -395,7 +395,7 @@
     {
       "name": "Boucle d'oreilles en forme de fleur",
       "price": 500,
-      "category": "Boucle d'oreilles",
+      "category": "boucles",
       "desc": "ces boucles d'oreilles sont un modèle ajustable en forme de fleur en acier inoxydable doré.",
       "image": "https://ae01.alicdn.com/kf/S96bf913bbb8448ba8c27a8349fa679b0q.jpg"
     },
@@ -437,14 +437,14 @@
     {
       "name": "Boucle d'oreilles pendantes",
       "price": 500,
-      "category": "Boucle d'oreilles",
+      "category": "boucles",
       "desc": "Parfait pour sublimer votre style au quotidien ou en soirée",
       "image": "https://i.pinimg.com/1200x/91/d0/69/91d069ef4ce42b10abff9dcdc555028b.jpg"
     },
     {
       "name": "Boucle d'oreilles en forme d'écaille",
       "price": 500,
-      "category": "Boucle d'oreilles",
+      "category": "boucles",
       "desc": "Boucles d'oreilles en forme d'écaille pour plus de confiance",
       "image": "https://i.pinimg.com/1200x/6a/95/2e/6a952efb8aebac37bf8dc8b2e998f69a.jpg"
     }
