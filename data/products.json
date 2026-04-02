@@ -393,7 +393,7 @@
       "image": "https://ae01.alicdn.com/kf/S7a94012c9b1540ee9fc450a73f05b499Y.jpg_960x960.jpg"
     },
     {
-      "name": "Bague en forme de fleur",
+      "name": "Boucle d'oreilles en forme de fleur",
       "price": 500,
       "category": "Boucle d'oreilles",
       "desc": "ces boucles d'oreilles sont un modèle ajustable en forme de fleur en acier inoxydable doré.",
@@ -433,6 +433,13 @@
       "category": "montre",
       "desc": "montre intelligent couleur rouge compatible à ton portable",
       "image": "https://i.pinimg.com/736x/81/c0/13/81c01364a3f28cad881ebd3009f5c9fe.jpg"
+    },
+    {
+      "name": "Boucle d'oreilles pendantes",
+      "price": 500,
+      "category": "Boucle d'oreilles",
+      "desc": "Parfait pour sublimer votre style au quotidien ou en soirée",
+      "image": "https://i.pinimg.com/1200x/91/d0/69/91d069ef4ce42b10abff9dcdc555028b.jpg"
     }
   ]
 }
