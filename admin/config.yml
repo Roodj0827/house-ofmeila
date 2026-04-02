@@ -47,6 +47,7 @@ collections:
                   - { label: "Montre", value: "montre" }
                   - { label: "Valise", value: "valise" }
                   - { label: "Lunettes", value: "lunettes" }
+                  { label: "Boucles d'oreilles", value: "boucles" }
                   - { label: "Autres", value: "autres" }
 
               - label: "Description"
