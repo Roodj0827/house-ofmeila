@@ -1,0 +1,10 @@
+{
+  "whatsapp": "50935311567",
+  "message": "Bonjour House of Meila, je souhaite commander",
+  "announcement": "Livraison disponible — Commandez directement via WhatsApp",
+  "logoUrl": "/images/uploads/70058.jpg",
+  "heroImage": "",
+  "instagram": "https://www.instagram.com/house_of_meila?igsh=MW04b2w2b2l1eGtxYQ==",
+  "facebook": "https://www.facebook.com/share/18H8LCiXPC/",
+  "tiktok": "https://www.tiktok.com/@house.of.meila?_r=1&_t=ZS-94FdSItolfz"
+}

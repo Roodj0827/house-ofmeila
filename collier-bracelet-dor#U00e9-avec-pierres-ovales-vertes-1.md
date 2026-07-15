@@ -1,0 +1,452 @@
+{
+  "items": [
+    {
+      "name": "Colier et bracelet en chaine Figaro",
+      "price": 1000,
+      "category": "jeu_de_bijoux",
+      "desc": "Bijoux pour hommes en acier inoxydable",
+      "image": "https://i.pinimg.com/1200x/7b/be/9d/7bbe9d4dfd174a020e771f23389bfb3a.jpg"
+    },
+    {
+      "name": "Twisted Rope Chain",
+      "price": 750,
+      "category": "collier",
+      "desc": "Colier mixte en or de style corde",
+      "image": "https://i.pinimg.com/736x/fd/93/a4/fd93a46f9d6bf80ad184ca584a459645.jpg"
+    },
+    {
+      "name": "Emerald Delight necklace",
+      "price": 750,
+      "category": "collier",
+      "desc": "Green stone dual chain necklace",
+      "image": "https://i.pinimg.com/736x/ed/83/95/ed839560ed55d4715677ecd9efc0e5f6.jpg"
+    },
+    {
+      "name": "Colier en acier avec pendentif cœur et pierre noire",
+      "price": 1000,
+      "category": "collier",
+      "desc": "colier pour femme en acier inoxydable",
+      "image": "https://i.pinimg.com/1200x/7c/05/88/7c058848a67c45bc996f7bba67b0e1ff.jpg"
+    },
+    {
+      "name": "Pureshuit Gold Necklace",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "Colier, bracelet en acier pour femme inoxydable",
+      "image": "https://www.clearcrystal.com/cdn/shop/files/GOLDCC-10image1.jpg?v=1687339135"
+    },
+    {
+      "name": "Jeu de bijoux femme",
+      "price": 1500,
+      "category": "jeu_de_bijoux",
+      "desc": "jeu de bijoux pour femme disponibles en or, en argent et en brune également",
+      "image": "https://i.pinimg.com/1200x/89/75/c7/8975c7c4ac25b5f06e054ee2b78a2d56.jpg"
+    },
+    {
+      "name": "jeu de bijoux en or",
+      "price": 1500,
+      "category": "jeu_de_bijoux",
+      "desc": "bijoux en acier disponibles en or",
+      "image": "https://i.pinimg.com/1200x/64/8f/4b/648f4b7f7d57c5abeffe94989b5bc5e1.jpg"
+    },
+    {
+      "name": "Green Crystal pendant Necklace",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "collier et braceket avec christaux ovales verts",
+      "image": "https://i.pinimg.com/736x/72/8e/46/728e46732c1ff43153f7ffd41f7dc4f3.jpg"
+    },
+    {
+      "name": "Statement Bangle Bracelet",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Bracelet en acier inoxydable",
+      "image": "https://i.pinimg.com/1200x/fc/6f/37/fc6f37d5624c900179a23c97f23230da.jpg"
+    },
+    {
+      "name": "Bangles Bracelets",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Bracelet Bangles en acier inoxydable",
+      "image": "https://i.pinimg.com/1200x/a0/79/de/a079deebfc1654adc5afbedadc76eb90.jpg"
+    },
+    {
+      "name": "Bangle Bracelet",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Cute Bangle Bracelet",
+      "image": "https://i.pinimg.com/736x/cc/e9/f7/cce9f7bb0b3bd0d8a50094f8ee8fdabe.jpg"
+    },
+    {
+      "name": "Mini Lunettes anti bleu",
+      "price": 500,
+      "category": "lunettes",
+      "desc": "Ces lunettes sont des lunettes rondes, bloquant la lumière bleue.",
+      "image": "https://i.pinimg.com/736x/df/f4/55/dff45560df3078beabdcd9b17d8010f3.jpg"
+    },
+    {
+      "name": "Lunettes fantaisie",
+      "price": 1000,
+      "category": "lunettes",
+      "desc": "Ces lunettes sont une monture oversized (surdimensionnée) de forme carrée au style rétro-chic marqué.",
+      "image": "https://i.pinimg.com/736x/a7/66/02/a766023857c1e6fb5657507f4e811d3e.jpg"
+    },
+    {
+      "name": "Lunettes Fantaisie",
+      "price": 750,
+      "category": "lunettes",
+      "desc": "Ces lunettes sont des lunettes de vue, caractérisées par une monture en acétate robuste de forme carrée surdimensionnée.",
+      "image": "https://i.pinimg.com/1200x/58/ec/29/58ec29ea5c67f5bd7bf72c3f0a13c41b.jpg"
+    },
+    {
+      "name": "Montre Intelligent",
+      "price": 2500,
+      "category": "montre",
+      "desc": "Montre Intelligent couleur marron disponible",
+      "image": "https://i.pinimg.com/1200x/6a/a8/3d/6aa83d169c684beab2e9f2a6bd24e806.jpg"
+    },
+    {
+      "name": "Collier/Bracelet cœurs d'or",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "Jeu de bijoux pour femmes",
+      "image": "https://ae01.alicdn.com/kf/S3b9db4ff555a4ee4be6b4d6579d73fe1Q.jpeg"
+    },
+    {
+      "name": "jeu de bijoux en perles",
+      "price": 1500,
+      "category": "jeu_de_bijoux",
+      "desc": "bijoux en perle et acier pour femmes",
+      "image": "https://jewelsmars.com/cdn/shop/files/WhatsAppImage2025-04-04at4.27.03PM.jpg?v=1744022751"
+    },
+    {
+      "name": "Collier et bracelet en cœur d'acier",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "soyez fan du luxe",
+      "image": "https://mysmartbazaar.com/cdn/shop/files/DY-CB-MIX-40212-M-5-2x.jpg?v=1736501051&width=800"
+    },
+    {
+      "name": "Bijoux pour femme",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "jeu de nijoux pour femme pas commun",
+      "image": "https://img.leboncoin.fr/api/v1/lbcpb1/images/d7/b1/ee/d7b1ee5cb3970674ba6b083ed3710d2428f23816.jpg?rule=ad-large"
+    },
+    {
+      "name": "Jeu de bijoux pour femmes",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "CHAÎNE + BOUCLES D'OREILLES un combos parfait pour Vos sorties luxueuses",
+      "image": "https://s.alicdn.com/@sc04/kf/H3e77f8c4490c446282a773073445a8c5X/24K-Gold-Plated-Tibetan-Silver-Jewelry-Set-XOXO-Shape-Diamond-Pearl-Wedding-Party-Engagement-Anniversary-Perfect-Gift-Ring.png_300x300.jpg"
+    },
+    {
+      "name": "Fashion Minimalist Beaded Chain",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "faites choix d'house of Meila pour vos achats de bijoux pas commun et de bonnes qualités",
+      "image": "https://ae01.alicdn.com/kf/S430c19d0550847ed998801770ea1ec96w.jpg"
+    },
+    {
+      "name": "collier pendentif Notre-Dame de Guadalupe",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "collier pendentif Notre-Dame de Guadalupe avec boucles d'oreilles assorties",
+      "image": "https://s.alicdn.com/@sc04/kf/H487fdc7446ab4f59934d093f22e576dbL/New-High-End-Shiny-Zircon-Stainless-Steel-Jewelry-Niche-Geometric-Oval-Madonna-Figure-Cross-Pendant-Necklace-Gifts-for-Women.jpg_300x300.jpg"
+    },
+    {
+      "name": "Gold Stackable Ring",
+      "price": 500,
+      "category": "bague",
+      "desc": "Faites vous plaisir",
+      "image": "https://i.etsystatic.com/24042361/r/il/493fef/6436593279/il_1140xN.6436593279_d99d.jpg"
+    },
+    {
+      "name": "Arm cuffs en fleur",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Bracelet pour avant-bras en fleur pour fille ajustable",
+      "image": "https://i.pinimg.com/1200x/56/f5/da/56f5dae64f5da349c239811a5b108567.jpg"
+    },
+    {
+      "name": "Arm Cuff Upper Arm Band Cuff Bracelet Bangle for Women Adjustable Armband",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "bracelet avant-bras pour femme",
+      "image": "https://i.pinimg.com/1200x/48/5b/14/485b14080b6b8b5c8aafbe1e6694e840.jpg"
+    },
+    {
+      "name": "Arm Cuff Adjustable Gold",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Bracelet Manchette ​Cadeau Minimaliste pour Femmes Bijoux Cadeau",
+      "image": "https://i.pinimg.com/1200x/12/5c/9a/125c9ac53ed4d06266cc7da8d91c1ec2.jpg"
+    },
+    {
+      "name": "Delicate Genuine Freshwater Pearl with Jade Bracelet",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "Bracelet délicat en perles de vraie perle, bracelet pour mariée ou demoiselle d'honneur, cadeau pour elle",
+      "image": "https://i.etsystatic.com/38041301/r/il/5cdff2/6663940460/il_fullxfull.6663940460_a7cn.jpg"
+    },
+    {
+      "name": "green pearl with white moti mala",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "perle verte avec mala de moti blanc",
+      "image": "https://images.meesho.com/images/products/532182909/4bilx_512.jpg"
+    },
+    {
+      "name": "Minimalist Arm Cuff Gold",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Bracelet Manchette Minimaliste en Or pour le Bras Supérieur, Bracelet Féminin Empilable et Délicat",
+      "image": "https://m.media-amazon.com/images/I/516OhVgGyNL._AC_SY535_.jpg"
+    },
+    {
+      "name": "SANDOO Minimalist Gold Arm Bracelet",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "bracelet manchette de style minimaliste en métal doré",
+      "image": "https://img.kwcdn.com/product/fancy/ef3dc771-e97f-4f2a-917e-182f4350e434.jpg"
+    },
+    {
+      "name": "Butterfly Bracelet",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "bracelet de bras doré minimaliste avec un motif de papillon papillon",
+      "image": "https://cdn.dsmcdn.com/ty1730/prod/QC_PREP/20250819/02/1037e987-cb69-3376-a8a4-517ad9c68045/1_org_zoom.jpg"
+    },
+    {
+      "name": "Bracelet jonc",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Ce bracelet est un jonc ouvert plaqué or avec des extrémités en forme de goutte, souvent commercialisé comme un bracelet manchette réglable et minimaliste.",
+      "image": "https://m.media-amazon.com/images/I/51150DHsDPL._AC_SX385_.jpg"
+    },
+    {
+      "name": "Minimalist Arm Cuff Gold Cuff Upper Arm Bracelet Dainty Layered Bangle Jewelry",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Ce bijou est un brassard de bras minimaliste en alliage plaqué or, ajustable et composé de plusieurs couches.",
+      "image": "https://m.media-amazon.com/images/I/61VO1eg-dSL._AC_UY300_.jpg"
+    },
+    {
+      "name": "Brassard bras femme or spirale minimaliste",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Ce bracelet de bras en spirale est un modèle générique en alliage métallique.",
+      "image": "https://img.joomcdn.net/4144e50446f5e4522f2981bb281c75dd1b56e5b1_original.jpeg"
+    },
+    {
+      "name": "Golden leaf shaped open cuff bracelet",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "bracelet manchette Sima Sima en forme de feuille dorée, idéal comme bijou de bras ou brassard.",
+      "image": "https://img.kwcdn.com/product/fancy/2b952b7a-b148-492b-b10b-9e99d358914f.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp"
+    },
+    {
+      "name": "YUYASSJY minimalist gold arm cuff bracelet",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Ce bracelet est une manchette de bras minimaliste YUYASSJY en métal doré.",
+      "image": "https://m.media-amazon.com/images/I/51hfO6QiPXL._AC_UY1000_.jpg"
+    },
+    {
+      "name": "4 Leaf Clover Necklace",
+      "price": 750,
+      "category": "collier",
+      "desc": "Ce collier est un modèle inspiré de la collection Alhambra de Van Cleef & Arpels, caractérisé par ses motifs de trèfle à quatre feuilles.",
+      "image": "https://i.etsystatic.com/49760123/r/il/474dde/6057924867/il_1140xN.6057924867_mzd5.jpg"
+    },
+    {
+      "name": "Bague nacré cœurs en acier inoxydable",
+      "price": 500,
+      "category": "bague",
+      "desc": "bague ouverte de couleur dorée avec des motifs en forme de cœur remplis d'émail blanc",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq7PTRYV0qDVCwqlw6yYRFZf4BvM1LYSJjSQ&s"
+    },
+    {
+      "name": "Lover's Twist Ring",
+      "price": 500,
+      "category": "bague",
+      "desc": "Cette bague est un modèle ajustable en acier inoxydable avec une finition plaquée or et un motif en émail blanc",
+      "image": "https://letsbagitonline.com/cdn/shop/files/Untitleddesign-2025-04-09T113534.358.png?v=1744245543&width=1920"
+    },
+    {
+      "name": "Abbraccio Black",
+      "price": 500,
+      "category": "bague",
+      "desc": "Cette bague est une bague ajustable en acier inoxydable plaqué or de marque générique, dotée d'un motif émaillé noir",
+      "image": "https://tisa.co.in/cdn/shop/files/background-editor_output_11d04f39-0e3e-43ef-9fe1-9e4eb74eb2f9.png?v=1740238805"
+    },
+    {
+      "name": "chaîne à mailles cubaines",
+      "price": 750,
+      "category": "collier",
+      "desc": "Ce collier est un modèle de chaîne gourmette cubaine pour homme en acier inoxydable.",
+      "image": "https://cdn-s3.touchofmodern.com/products/002/730/165/763f4b7e455a613dfd3d730cf7a55aa9_large.jpg?1705103965"
+    },
+    {
+      "name": "Twisted Rope Chain",
+      "price": 750,
+      "category": "collier",
+      "desc": "Colier mixte en or de style corde",
+      "image": "https://i.pinimg.com/1200x/81/80/2c/81802c61e982f5a95c69c675e395c121.jpg"
+    },
+    {
+      "name": "chaîne à mailles cubaines",
+      "price": 1000,
+      "category": "jeu_de_bijoux",
+      "desc": "Ce collier est un modèle de chaîne gourmette cubaine pour homme en acier inoxydable.",
+      "image": "https://img.kwcdn.com/product/fancy/3d814d3c-2955-402e-bb2d-5ff82cc507e2.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp"
+    },
+    {
+      "name": "Pure and Divine Cross Bracelet For Men",
+      "price": 750,
+      "category": "bracelet",
+      "desc": "Ce produit est un bracelet pour homme en silicone et acier inoxydable avec une croix.",
+      "image": "https://silverwork-jewelers.myshopify.com/cdn/shop/products/v-Gold_Tone__-1753207510.jpg?v=1504785225"
+    },
+    {
+      "name": "Pure and Divine Cross Bracelet For Men",
+      "price": 750,
+      "category": "bracelet",
+      "desc": "Ce produit est un bracelet pour homme en silicone et acier inoxydable avec une croix",
+      "image": "https://silverwork-jewelers.myshopify.com/cdn/shop/products/Fate-Love-Silicone-Stainless-Steel-Cross-Bracelet-Bangle-For-Men-Silver-Gold-Black-Wristband-Masculine-Cool_bc07df4b-0ca5-420c-9f4f-b102ab9d7a6f.jpg?v=1504785225"
+    },
+    {
+      "name": "Pure and Divine Cross Bracelet For Men",
+      "price": 750,
+      "category": "bracelet",
+      "desc": "Ce produit est un bracelet pour homme en silicone et acier inoxydable avec une croix",
+      "image": "https://silverwork-jewelers.myshopify.com/cdn/shop/products/Fate-Love-Silicone-Stainless-Steel-Cross-Bracelet-Bangle-For-Men-Silver-Gold-Black-Wristband-Masculine-Cool_7336f88b-1701-463e-97fe-199876909f24.jpg?v=1504785225"
+    },
+    {
+      "name": "bague ovale organique",
+      "price": 500,
+      "category": "bague",
+      "desc": "Il s'agit d'une bague ovale ouverte, souvent proposée en laiton doré ou en acier inoxydable dans un style bohème et minimaliste",
+      "image": "https://ae01.alicdn.com/kf/S2e3721308a1c4cdcaab18f3ac39081b2C.jpg"
+    },
+    {
+      "name": "Bracelet menotte",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Il s'agit d'un bracelet en acier inoxydable avec pendentif menottes monté sur une chaîne gourmette",
+      "image": "https://laboutiquedubracelet.fr/cdn/shop/files/bracelet-menottes-en-acier-inoxydable-mixte-modele-steph-205049.jpg?v=1747732393&width=800"
+    },
+    {
+      "name": "Bracelet menotte",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Il s'agit d'un bracelet en acier inoxydable avec pendentif menottes monté sur une chaîne gourmette",
+      "image": "https://laboutiquedubracelet.fr/cdn/shop/files/bracelet-menottes-en-acier-inoxydable-mixte-modele-steph-371745.jpg?v=1747732393&width=800"
+    },
+    {
+      "name": "Bracelet menotte",
+      "price": 1000,
+      "category": "bracelet",
+      "desc": "Il s'agit d'un bracelet en acier inoxydable avec pendentif menottes monté sur une chaîne gourmette",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpWXbI2xM1X0911Z9A3J1InBpoXVKvbIM3xg&s"
+    },
+    {
+      "name": "Shiny Handcuff Pendant Necklace",
+      "price": 750,
+      "category": "collier",
+      "desc": "Ce collier est un bijou de type chaîne avec un pendentif en forme de menottes, souvent commercialisé comme un symbole d'amour, d'attachement ou de liberté.",
+      "image": "https://de.cwa.sellercloud.com/images/products/1521963.jpg"
+    },
+    {
+      "name": "colier pendentif cœur marbre",
+      "price": 750,
+      "category": "collier",
+      "desc": "Il s'agit du collier pendentif cœur en nacre de la marque Divaura.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt4mDN2uj05I77UN6rokjgJ46zYv-3fhFvSg&s"
+    },
+    {
+      "name": "Parure de bijoux cœur",
+      "price": 1250,
+      "category": "jeu_de_bijoux",
+      "desc": "Cet ensemble de bijoux est une parure en acier inoxydable doré, comprenant un collier et des boucles d'oreilles avec des pendentifs en forme de cœur.",
+      "image": "https://ci.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/58/027403/1.jpg?3767"
+    },
+    {
+      "name": "Montre Casio",
+      "price": 2500,
+      "category": "montre",
+      "desc": "Cette montre est une Casio de style vintage avec un boîtier carré doré et un cadran champagne.",
+      "image": "https://i.pinimg.com/736x/27/4b/e6/274be6743536026ef24046e0cfde8de5.jpg"
+    },
+    {
+      "name": "Boucles d'oreilles fleur cerisier doré",
+      "price": 500,
+      "category": "boucles",
+      "desc": "Ces boucles d'oreilles dorées sont le modèle \"Gold flower EARRINGS\" de Five Fashion Concept Store, fabriquées en acier inoxydable durable.",
+      "image": "https://eproshopping.cloud/media/4797e2fd8b2a73aa54dce18ee5f6fd3db5fdc0ad/produit/655423961f523e01b3ff32bfca024acfc0940c18-lg.jpg"
+    },
+    {
+      "name": "pendentif barre verticale en acier inoxydable",
+      "price": 750,
+      "category": "collier",
+      "desc": "Ce collier pour homme est un modèle de pendentif barre verticale en acier inoxydable doré, souvent proposé avec une chaîne à maillons et une finition polie pour un rendu moderne et épuré.",
+      "image": "https://ae01.alicdn.com/kf/S7a94012c9b1540ee9fc450a73f05b499Y.jpg_960x960.jpg"
+    },
+    {
+      "name": "Boucle d'oreilles en forme de fleur",
+      "price": 500,
+      "category": "boucles",
+      "desc": "ces boucles d'oreilles sont un modèle ajustable en forme de fleur en acier inoxydable doré.",
+      "image": "https://ae01.alicdn.com/kf/S96bf913bbb8448ba8c27a8349fa679b0q.jpg"
+    },
+    {
+      "name": "bracelet jonc à chiffres romains",
+      "price": 750,
+      "category": "bracelet",
+      "desc": "Ce bracelet est un jonc en acier inoxydable plaqué or, arborant des chiffres romains gravés et des cristaux de zircone.",
+      "image": "https://sc04.alicdn.com/kf/H97c883293997480d90bf728e5cf56996e.jpg"
+    },
+    {
+      "name": "Smartwatch couleur blanche",
+      "price": 2250,
+      "category": "montre",
+      "desc": "plain silicone watchband compatible with your phone",
+      "image": "https://i.pinimg.com/1200x/a4/97/cc/a497cc7b8a4d4d1b039605edc68582a6.jpg"
+    },
+    {
+      "name": "Smartwatch couleur orange",
+      "price": 2250,
+      "category": "montre",
+      "desc": "montre intelligent compatible à ton portable",
+      "image": "https://i.pinimg.com/736x/21/95/7f/21957f4fc701157cb78f2e37474deaab.jpg"
+    },
+    {
+      "name": "Smartwatch couleur jaune citron",
+      "price": 2250,
+      "category": "montre",
+      "desc": "Montre intelligent compatible à ton portable",
+      "image": "https://i.pinimg.com/1200x/32/4f/d1/324fd132fb32cfbd042ef48213b20b6a.jpg"
+    },
+    {
+      "name": "Smartwatch couleur rouge",
+      "price": 2250,
+      "category": "montre",
+      "desc": "montre intelligent couleur rouge compatible à ton portable",
+      "image": "https://i.pinimg.com/736x/81/c0/13/81c01364a3f28cad881ebd3009f5c9fe.jpg"
+    },
+    {
+      "name": "Boucle d'oreilles pendantes",
+      "price": 500,
+      "category": "boucles",
+      "desc": "Parfait pour sublimer votre style au quotidien ou en soirée",
+      "image": "https://i.pinimg.com/1200x/91/d0/69/91d069ef4ce42b10abff9dcdc555028b.jpg"
+    },
+    {
+      "name": "Boucle d'oreilles en forme d'écaille",
+      "price": 500,
+      "category": "boucles",
+      "desc": "Boucles d'oreilles en forme d'écaille pour plus de confiance",
+      "image": "https://i.pinimg.com/1200x/6a/95/2e/6a952efb8aebac37bf8dc8b2e998f69a.jpg"
+    }
+  ]
+}
