@@ -49,7 +49,8 @@
       "price": 1500,
       "category": "jeu_de_bijoux",
       "desc": "bijoux en acier disponibles en or",
-      "image": "https://i.pinimg.com/1200x/64/8f/4b/648f4b7f7d57c5abeffe94989b5bc5e1.jpg"
+      "image": "https://i.pinimg.com/1200x/64/8f/4b/648f4b7f7d57c5abeffe94989b5bc5e1.jpg",
+      "isSoldOut": true
     },
     {
       "name": "Green Crystal pendant Necklace",
