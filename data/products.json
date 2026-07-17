@@ -16,10 +16,12 @@
     },
     {
       "name": "Emerald Delight necklace",
-      "price": 750,
+      "price": 500,
       "category": "collier",
       "desc": "Green stone dual chain necklace",
-      "image": "https://i.pinimg.com/736x/ed/83/95/ed839560ed55d4715677ecd9efc0e5f6.jpg"
+      "image": "https://i.pinimg.com/736x/ed/83/95/ed839560ed55d4715677ecd9efc0e5f6.jpg",
+      "isSoldOut": false,
+      "oldPrice": 750
     },
     {
       "name": "Colier en acier avec pendentif cœur et pierre noire",
