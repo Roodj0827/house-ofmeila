@@ -1,0 +1,127 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: "fr"
+
+collections:
+
+  # ─── PRODUITS ───
+  - name: "products"
+    label: "Produits"
+    files:
+      - label: "Catalogue"
+        name: "catalogue"
+        file: "data/products.json"
+        fields:
+          - label: "Produits"
+            name: "items"
+            widget: "list"
+            label_singular: "Produit"
+            summary: "{{fields.name}} — {{fields.price}} HTG"
+            fields:
+              - label: "Nom du produit"
+                name: "name"
+                widget: "string"
+                hint: "ex: Collier Étoile Céleste"
+
+              - label: "Prix (HTG)"
+                name: "price"
+                widget: "number"
+                value_type: "int"
+                min: 0
+
+              - label: "Catégorie"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Jeu de bijoux", value: "jeu_de_bijoux" }
+                  - { label: "Collier", value: "collier" }
+                  - { label: "Bracelet", value: "bracelet" }
+                  - { label: "Bague", value: "bague" }
+                  - { label: "Chevillère", value: "chevillere" }
+                  - { label: "Tour de cou", value: "tour_de_cou" }
+                  - { label: "Montre", value: "montre" }
+                  - { label: "Valise", value: "valise" }
+                  - { label: "Lunettes", value: "lunettes" }
+                  - { label: "Boucles d'oreilles", value: "boucles" }
+                  - { label: "Autres", value: "autres" }
+
+              - label: "Description"
+                name: "desc"
+                widget: "text"
+                required: false
+
+              - label: "Photo du produit"
+                name: "image"
+                widget: "image"
+                required: false
+                hint: "Un lien Google Drive est converti automatiquement en lien direct"
+
+              - label: "Prix barré (ancien prix, optionnel)"
+                name: "oldPrice"
+                widget: "number"
+                value_type: "int"
+                min: 0
+                required: false
+                hint: "Si renseigné et supérieur au prix de base, le badge de réduction s'affiche automatiquement"
+
+              - label: "Marquer comme épuisé / Sold out"
+                name: "isSoldOut"
+                widget: "boolean"
+                default: false
+                required: false
+
+  # ─── PARAMÈTRES ───
+  - name: "settings"
+    label: "Paramètres du site"
+    files:
+      - label: "Paramètres généraux"
+        name: "general"
+        file: "data/settings.json"
+        fields:
+          - label: "WhatsApp"
+            name: "whatsapp"
+            widget: "string"
+            hint: "Numéro avec indicatif pays, ex: 50941641700"
+            required: false
+
+          - label: "Message WhatsApp pré-rempli"
+            name: "message"
+            widget: "text"
+            required: false
+
+          - label: "Barre d'annonce"
+            name: "announcement"
+            widget: "string"
+            required: false
+            hint: "Laissez vide pour masquer"
+
+          - label: "Logo"
+            name: "logoUrl"
+            widget: "image"
+            required: false
+
+          - label: "Image de la section Hero (accueil)"
+            name: "heroImage"
+            widget: "image"
+            required: false
+            hint: "Un lien Google Drive est converti automatiquement en lien direct. Si vide, la photo du premier produit est utilisée."
+
+          - label: "Instagram"
+            name: "instagram"
+            widget: "string"
+            required: false
+
+          - label: "Facebook"
+            name: "facebook"
+            widget: "string"
+            required: false
+
+          - label: "TikTok"
+            name: "tiktok"
+            widget: "string"
+            required: false
