@@ -405,7 +405,8 @@
       "price": 2500,
       "category": "montre",
       "desc": "Cette montre est une Casio de style vintage avec un boîtier carré doré et un cadran champagne.",
-      "image": "https://i.pinimg.com/736x/27/4b/e6/274be6743536026ef24046e0cfde8de5.jpg"
+      "image": "https://i.pinimg.com/736x/27/4b/e6/274be6743536026ef24046e0cfde8de5.jpg",
+      "isSoldOut": true
     },
     {
       "name": "Boucles d'oreilles fleur cerisier doré",
