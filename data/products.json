@@ -128,7 +128,8 @@
       "price": 1250,
       "category": "jeu_de_bijoux",
       "desc": "soyez fan du luxe",
-      "image": "https://mysmartbazaar.com/cdn/shop/files/DY-CB-MIX-40212-M-5-2x.jpg?v=1736501051&width=800"
+      "image": "https://mysmartbazaar.com/cdn/shop/files/DY-CB-MIX-40212-M-5-2x.jpg?v=1736501051&width=800",
+      "isSoldOut": true
     },
     {
       "name": "Bijoux pour femme",
