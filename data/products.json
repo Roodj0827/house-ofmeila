@@ -93,7 +93,8 @@
       "price": 1000,
       "category": "lunettes",
       "desc": "Ces lunettes sont une monture oversized (surdimensionnée) de forme carrée au style rétro-chic marqué.",
-      "image": "https://i.pinimg.com/736x/a7/66/02/a766023857c1e6fb5657507f4e811d3e.jpg"
+      "image": "https://i.pinimg.com/736x/a7/66/02/a766023857c1e6fb5657507f4e811d3e.jpg",
+      "isSoldOut": true
     },
     {
       "name": "Lunettes Fantaisie",
