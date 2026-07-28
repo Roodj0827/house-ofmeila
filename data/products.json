@@ -250,7 +250,8 @@
       "price": 1000,
       "category": "bracelet",
       "desc": "Ce bracelet de bras en spirale est un modèle générique en alliage métallique.",
-      "image": "https://img.joomcdn.net/4144e50446f5e4522f2981bb281c75dd1b56e5b1_original.jpeg"
+      "image": "https://img.joomcdn.net/4144e50446f5e4522f2981bb281c75dd1b56e5b1_original.jpeg",
+      "isSoldOut": true
     },
     {
       "name": "Golden leaf shaped open cuff bracelet",
