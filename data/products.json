@@ -188,7 +188,8 @@
       "price": 1000,
       "category": "bracelet",
       "desc": "Bracelet Manchette ​Cadeau Minimaliste pour Femmes Bijoux Cadeau",
-      "image": "https://i.pinimg.com/1200x/12/5c/9a/125c9ac53ed4d06266cc7da8d91c1ec2.jpg"
+      "image": "https://i.pinimg.com/1200x/12/5c/9a/125c9ac53ed4d06266cc7da8d91c1ec2.jpg",
+      "isSoldOut": true
     },
     {
       "name": "Delicate Genuine Freshwater Pearl with Jade Bracelet",
