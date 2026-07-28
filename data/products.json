@@ -101,7 +101,8 @@
       "price": 750,
       "category": "lunettes",
       "desc": "Ces lunettes sont des lunettes de vue, caractérisées par une monture en acétate robuste de forme carrée surdimensionnée.",
-      "image": "https://i.pinimg.com/1200x/58/ec/29/58ec29ea5c67f5bd7bf72c3f0a13c41b.jpg"
+      "image": "https://i.pinimg.com/1200x/58/ec/29/58ec29ea5c67f5bd7bf72c3f0a13c41b.jpg",
+      "isSoldOut": true
     },
     {
       "name": "Montre Intelligent",
