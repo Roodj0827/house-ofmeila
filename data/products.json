@@ -180,7 +180,8 @@
       "price": 1000,
       "category": "bracelet",
       "desc": "bracelet avant-bras pour femme",
-      "image": "https://i.pinimg.com/1200x/48/5b/14/485b14080b6b8b5c8aafbe1e6694e840.jpg"
+      "image": "https://i.pinimg.com/1200x/48/5b/14/485b14080b6b8b5c8aafbe1e6694e840.jpg",
+      "isSoldOut": true
     },
     {
       "name": "Arm Cuff Adjustable Gold",
