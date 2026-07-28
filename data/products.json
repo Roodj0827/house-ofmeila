@@ -5,7 +5,8 @@
       "price": 1000,
       "category": "jeu_de_bijoux",
       "desc": "Bijoux pour hommes en acier inoxydable",
-      "image": "https://i.pinimg.com/1200x/7b/be/9d/7bbe9d4dfd174a020e771f23389bfb3a.jpg"
+      "image": "https://i.pinimg.com/1200x/7b/be/9d/7bbe9d4dfd174a020e771f23389bfb3a.jpg",
+      "isSoldOut": true
     },
     {
       "name": "Twisted Rope Chain",
@@ -112,7 +113,8 @@
       "price": 1250,
       "category": "jeu_de_bijoux",
       "desc": "Jeu de bijoux pour femmes",
-      "image": "https://ae01.alicdn.com/kf/S3b9db4ff555a4ee4be6b4d6579d73fe1Q.jpeg"
+      "image": "https://ae01.alicdn.com/kf/S3b9db4ff555a4ee4be6b4d6579d73fe1Q.jpeg",
+      "isSoldOut": true
     },
     {
       "name": "jeu de bijoux en perles",
