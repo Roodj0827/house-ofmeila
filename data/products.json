@@ -321,7 +321,8 @@
       "price": 1000,
       "category": "jeu_de_bijoux",
       "desc": "Ce collier est un modèle de chaîne gourmette cubaine pour homme en acier inoxydable.",
-      "image": "https://img.kwcdn.com/product/fancy/3d814d3c-2955-402e-bb2d-5ff82cc507e2.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp"
+      "image": "https://img.kwcdn.com/product/fancy/3d814d3c-2955-402e-bb2d-5ff82cc507e2.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp",
+      "isSoldOut": true
     },
     {
       "name": "Pure and Divine Cross Bracelet For Men",
@@ -413,7 +414,8 @@
       "price": 500,
       "category": "boucles",
       "desc": "Ces boucles d'oreilles dorées sont le modèle \"Gold flower EARRINGS\" de Five Fashion Concept Store, fabriquées en acier inoxydable durable.",
-      "image": "https://eproshopping.cloud/media/4797e2fd8b2a73aa54dce18ee5f6fd3db5fdc0ad/produit/655423961f523e01b3ff32bfca024acfc0940c18-lg.jpg"
+      "image": "https://eproshopping.cloud/media/4797e2fd8b2a73aa54dce18ee5f6fd3db5fdc0ad/produit/655423961f523e01b3ff32bfca024acfc0940c18-lg.jpg",
+      "isSoldOut": true
     },
     {
       "name": "pendentif barre verticale en acier inoxydable",
@@ -473,7 +475,8 @@
       "price": 500,
       "category": "boucles",
       "desc": "Parfait pour sublimer votre style au quotidien ou en soirée",
-      "image": "https://i.pinimg.com/1200x/91/d0/69/91d069ef4ce42b10abff9dcdc555028b.jpg"
+      "image": "https://i.pinimg.com/1200x/91/d0/69/91d069ef4ce42b10abff9dcdc555028b.jpg",
+      "isSoldOut": true
     },
     {
       "name": "Boucle d'oreilles en forme d'écaille",
