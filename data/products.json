@@ -367,7 +367,8 @@
       "price": 1000,
       "category": "bracelet",
       "desc": "Il s'agit d'un bracelet en acier inoxydable avec pendentif menottes monté sur une chaîne gourmette",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpWXbI2xM1X0911Z9A3J1InBpoXVKvbIM3xg&s"
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpWXbI2xM1X0911Z9A3J1InBpoXVKvbIM3xg&s",
+      "isSoldOut": true
     },
     {
       "name": "Shiny Handcuff Pendant Necklace",
