@@ -266,7 +266,8 @@
       "price": 1000,
       "category": "bracelet",
       "desc": "Ce bracelet est une manchette de bras minimaliste YUYASSJY en métal doré.",
-      "image": "https://m.media-amazon.com/images/I/51hfO6QiPXL._AC_UY1000_.jpg"
+      "image": "https://m.media-amazon.com/images/I/51hfO6QiPXL._AC_UY1000_.jpg",
+      "isSoldOut": true
     },
     {
       "name": "4 Leaf Clover Necklace",
