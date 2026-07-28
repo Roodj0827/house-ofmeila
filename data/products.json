@@ -172,7 +172,8 @@
       "price": 1000,
       "category": "bracelet",
       "desc": "Bracelet pour avant-bras en fleur pour fille ajustable",
-      "image": "https://i.pinimg.com/1200x/56/f5/da/56f5dae64f5da349c239811a5b108567.jpg"
+      "image": "https://i.pinimg.com/1200x/56/f5/da/56f5dae64f5da349c239811a5b108567.jpg",
+      "isSoldOut": true
     },
     {
       "name": "Arm Cuff Upper Arm Band Cuff Bracelet Bangle for Women Adjustable Armband",
