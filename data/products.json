@@ -332,7 +332,8 @@
       "price": 750,
       "category": "bracelet",
       "desc": "Ce produit est un bracelet pour homme en silicone et acier inoxydable avec une croix",
-      "image": "https://silverwork-jewelers.myshopify.com/cdn/shop/products/Fate-Love-Silicone-Stainless-Steel-Cross-Bracelet-Bangle-For-Men-Silver-Gold-Black-Wristband-Masculine-Cool_bc07df4b-0ca5-420c-9f4f-b102ab9d7a6f.jpg?v=1504785225"
+      "image": "https://silverwork-jewelers.myshopify.com/cdn/shop/products/Fate-Love-Silicone-Stainless-Steel-Cross-Bracelet-Bangle-For-Men-Silver-Gold-Black-Wristband-Masculine-Cool_bc07df4b-0ca5-420c-9f4f-b102ab9d7a6f.jpg?v=1504785225",
+      "isSoldOut": true
     },
     {
       "name": "Pure and Divine Cross Bracelet For Men",
