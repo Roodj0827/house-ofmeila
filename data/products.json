@@ -85,7 +85,8 @@
       "price": 500,
       "category": "lunettes",
       "desc": "Ces lunettes sont des lunettes rondes, bloquant la lumière bleue.",
-      "image": "https://i.pinimg.com/736x/df/f4/55/dff45560df3078beabdcd9b17d8010f3.jpg"
+      "image": "https://i.pinimg.com/736x/df/f4/55/dff45560df3078beabdcd9b17d8010f3.jpg",
+      "isSoldOut": true
     },
     {
       "name": "Lunettes fantaisie",
