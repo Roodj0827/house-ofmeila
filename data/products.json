@@ -493,6 +493,14 @@
       "desc": "Valise YSL couleure Blanche edition limitée",
       "image": "",
       "isSoldOut": false
+    },
+    {
+      "name": "Sandals en talon YSL",
+      "price": 40500,
+      "category": "Sandals",
+      "desc": "Sandals en talon YSL disponible Original #41",
+      "image": "https://raw.githubusercontent.com/Roodj0827/house-ofmeila/main/images/uploads/1786205997967_IMG_5536.jpeg",
+      "isSoldOut": false
     }
   ]
 }
