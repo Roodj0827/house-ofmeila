@@ -501,6 +501,14 @@
       "desc": "Sandals en talon YSL disponible Original #41",
       "image": "https://raw.githubusercontent.com/Roodj0827/house-ofmeila/main/images/uploads/1786205997967_IMG_5536.jpeg",
       "isSoldOut": false
+    },
+    {
+      "name": "Sac à main YSL couleure blanche",
+      "price": 13500,
+      "category": "Sac à main",
+      "desc": "Sac à main YSL edition limitée original",
+      "image": "https://raw.githubusercontent.com/Roodj0827/house-ofmeila/main/images/uploads/1786206400383_IMG_5541.jpeg",
+      "isSoldOut": false
     }
   ]
 }
