@@ -485,6 +485,14 @@
       "desc": "Sac à main, YSL originale disponible en stock 🤗Limited Edition",
       "image": "https://raw.githubusercontent.com/Roodj0827/house-ofmeila/main/images/uploads/1786205630625_IMG_5539.jpeg",
       "isSoldOut": false
+    },
+    {
+      "name": "Sac à main YSL couleure blanche",
+      "price": 13500,
+      "category": "Sac à main",
+      "desc": "Valise YSL couleure Blanche edition limitée",
+      "image": "",
+      "isSoldOut": false
     }
   ]
 }
