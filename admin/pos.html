@@ -1,0 +1,762 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>House of Meila • POS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="../favicon.png" />
+    <style>
+      :root {
+        --bg: #f9eff3;
+        --panel: rgba(255,255,255,0.9);
+        --panel-strong: #f7edf2;
+        --primary: #3d1033;
+        --primary-soft: #7a3d68;
+        --gold: #c78d60;
+        --muted: #665d64;
+        --line: rgba(61, 16, 51, 0.12);
+        --success: #1b8f67;
+        --shadow: 0 14px 32px rgba(61, 16, 51, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(180deg, #faf1f5 0%, #f2e8ee 100%);
+        color: var(--primary);
+      }
+
+      .pos-shell {
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 24px 20px 36px;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 22px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(247,234,239,0.95));
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        margin-bottom: 26px;
+      }
+
+      .pos-brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .pos-brand-mark {
+        width: 74px;
+        height: 74px;
+        border-radius: 20px;
+        padding: 6px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+        box-shadow: 0 12px 26px rgba(61, 16, 51, 0.2);
+      }
+
+      .pos-brand-mark img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+
+      .pos-brand-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        font-size: 0.72rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--gold);
+      }
+
+      .pos-brand-copy h1 {
+        margin: 0;
+        font-size: clamp(1.8rem,2vw,2.4rem);
+        font-weight: 800;
+      }
+
+      .topbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .topbar-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: rgba(204, 156, 102, 0.15);
+        color: var(--primary);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .ghost-btn,
+      .secondary-btn,
+      .accent-btn,
+      .validate-btn,
+      .qty-btn,
+      .remove-btn,
+      #search-client,
+      #download-report,
+      #open-customer-group-page {
+        cursor: pointer;
+      }
+
+      .ghost-btn {
+        border: none;
+        border-radius: 12px;
+        background: rgba(61,16,51,0.06);
+        color: var(--primary);
+        font-weight: 700;
+        padding: 12px 16px;
+      }
+
+      .pos-layout {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 24px;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .panel-section {
+        padding: 20px;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+
+      .section-header h2,
+      .section-header h3 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .inline-search {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      input, select, button {
+        font: inherit;
+      }
+
+      input, select {
+        width: 100%;
+        border: 1px solid rgba(61,16,51,0.18);
+        background: rgba(255,255,255,0.8);
+        border-radius: 12px;
+        padding: 12px 14px;
+        color: var(--primary);
+      }
+
+      #search-client,
+      .secondary-btn,
+      .accent-btn,
+      .validate-btn {
+        border: none;
+        border-radius: 12px;
+        padding: 12px 16px;
+        font-weight: 700;
+      }
+
+      #search-client,
+      .secondary-btn {
+        background: rgba(61,16,51,0.08);
+        color: var(--primary);
+      }
+
+      .accent-btn,
+      .validate-btn {
+        background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+        color: #fff;
+        box-shadow: 0 10px 24px rgba(61,16,51,0.18);
+      }
+
+      .client-card {
+        background: linear-gradient(180deg, rgba(247,237,242,0.8), rgba(255,255,255,0.9));
+        border: 1px solid rgba(61,16,51,0.12);
+        border-radius: 16px;
+        padding: 16px;
+      }
+
+      .client-card-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .client-card-head h3 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .client-code {
+        background: rgba(205, 157, 107, 0.15);
+        color: var(--primary);
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+
+      .client-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .new-customer-box {
+        margin-top: 18px;
+      }
+
+      .client-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .form-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .form-grid.two-cols {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .product-results {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+      }
+
+      .product-card {
+        background: rgba(255,255,255,0.8);
+        border: 1px solid rgba(61,16,51,0.12);
+        border-radius: 16px;
+        padding: 12px;
+      }
+
+      .product-card img {
+        display: block;
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 10px;
+      }
+
+      .product-name {
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .product-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--muted);
+        margin-bottom: 10px;
+        font-size: 0.82rem;
+      }
+
+      .mini-btn {
+        width: 100%;
+        background: linear-gradient(135deg, rgba(205,157,107,0.18), rgba(122,61,104,0.16));
+        color: var(--primary);
+        border: 1px solid rgba(61,16,51,0.09);
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-weight: 700;
+        transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+        box-shadow: 0 6px 14px rgba(61,16,51,0.06);
+      }
+
+      .mini-btn:hover {
+        transform: translateY(-1px) scale(1.01);
+        box-shadow: 0 10px 18px rgba(61,16,51,0.12);
+      }
+
+      .mini-btn:active,
+      .mini-btn.added {
+        transform: scale(0.98);
+        background: linear-gradient(135deg, rgba(27,143,103,0.18), rgba(61,16,51,0.12));
+      }
+
+      .cart-table-wrap,
+      .report-table-wrap {
+        overflow: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 12px 10px;
+        border-bottom: 1px solid rgba(61,16,51,0.08);
+      }
+
+      th {
+        font-size: 0.75rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .qty-adjust {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .qty-btn {
+        width: 28px;
+        height: 28px;
+        border: 1px solid rgba(61,16,51,0.15);
+        background: rgba(61,16,51,0.04);
+        border-radius: 8px;
+        font-weight: 700;
+      }
+
+      .remove-btn {
+        background: rgba(180, 57, 30, 0.08);
+        color: #a52c2c;
+        border: none;
+        border-radius: 8px;
+        padding: 6px 10px;
+        font-weight: 700;
+      }
+
+      .sale-toolbar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 18px 0;
+      }
+
+      .summary-box {
+        background: rgba(247,237,242,0.7);
+        border: 1px solid rgba(61,16,51,0.08);
+        border-radius: 16px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .summary-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        font-weight: 600;
+      }
+
+      .summary-row strong {
+        font-size: 1.1rem;
+      }
+
+      .discount-row {
+        color: var(--success);
+        border-top: 1px solid rgba(61,16,51,0.08);
+        padding-top: 10px;
+      }
+
+      .loyalty-box {
+        margin-top: 18px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: rgba(205,157,107,0.08);
+        border: 1px solid rgba(205,157,107,0.16);
+      }
+
+      .loyalty-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+      }
+
+      .status-badge {
+        background: rgba(61,16,51,0.08);
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.72rem;
+      }
+
+      .validate-btn {
+        width: 100%;
+        margin-top: 18px;
+        padding: 15px 16px;
+        font-size: 1rem;
+      }
+
+      .report-panel {
+        margin-top: 26px;
+        padding: 20px;
+      }
+
+      .report-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .report-controls {
+        display: flex;
+        align-items: end;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .report-controls label {
+        min-width: 170px;
+      }
+
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(160px, 1fr));
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+
+      .kpi-card {
+        background: rgba(255,255,255,0.8);
+        border: 1px solid rgba(61,16,51,0.08);
+        border-radius: 16px;
+        padding: 18px 16px;
+      }
+
+      .kpi-card span {
+        display: block;
+        color: var(--muted);
+        margin-bottom: 8px;
+        font-size: 0.82rem;
+      }
+
+      .kpi-card strong {
+        font-size: 1.4rem;
+      }
+
+      .kpi-card.accent {
+        background: linear-gradient(135deg, rgba(61,16,51,0.12), rgba(205,157,107,0.12));
+      }
+
+      .report-cta-box {
+        margin-top: 18px;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      @media (max-width: 1100px) {
+        .pos-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .topbar,
+        .report-header,
+        .report-controls {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .sale-toolbar,
+        .kpi-grid,
+        .form-grid.two-cols {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="./pos.css" />
+  </head>
+  <body>
+    <div class="pos-shell">
+      <header class="topbar">
+        <div class="pos-brand">
+          <div class="pos-brand-mark">
+            <img src="../images/uploads/70058.jpg" alt="House of Meila" />
+          </div>
+          <div class="pos-brand-copy">
+            <p class="eyebrow">House of Meila</p>
+            <h1>Point de vente</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <span class="topbar-chip">Caisse</span>
+          <button id="reset-sale" class="ghost-btn" type="button">Nouvelle vente</button>
+        </div>
+      </header>
+
+      <main class="pos-layout">
+        <section class="panel panel-left">
+          <div class="panel-section customer-section">
+            <div class="section-header">
+              <h2>Client</h2>
+            </div>
+
+            <div class="inline-search">
+              <input id="client-search" type="text" placeholder="N° carte ou téléphone" />
+              <button id="search-client" type="button">Chercher</button>
+            </div>
+
+            <div id="client-result" class="client-card empty">
+              <p class="muted">Aucun client sélectionné.</p>
+            </div>
+
+            <div id="customer-creation-box" class="new-customer-box">
+              <div class="section-header compact">
+                <h3>Nouveau client</h3>
+              </div>
+              <form id="client-form" class="client-form">
+                <label>
+                  <span>Nom</span>
+                  <input id="customer-name" type="text" placeholder="Nom du client" />
+                </label>
+                <label>
+                  <span>WhatsApp</span>
+                  <input id="customer-phone" type="tel" placeholder="Ex. 509 1234 5678" />
+                </label>
+                <button class="secondary-btn" type="submit">Créer la carte fidélité</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="panel-section product-section">
+            <div class="section-header">
+              <h2>Produits</h2>
+            </div>
+
+            <div class="inline-search product-search-wrap">
+              <input id="product-search" type="text" placeholder="Rechercher un article" />
+            </div>
+
+            <div id="product-results" class="product-results"></div>
+
+            <div class="product-actions">
+              <button id="quick-add-product" class="accent-btn" type="button">+ Ajouter Article Express</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel panel-right">
+          <div class="panel-section cart-section">
+            <div class="section-header">
+              <h2>Panier</h2>
+            </div>
+
+            <div class="cart-table-wrap">
+              <table class="cart-table">
+                <thead>
+                  <tr>
+                    <th>Qté</th>
+                    <th>Description</th>
+                    <th>P.U.</th>
+                    <th>Montant</th>
+                  </tr>
+                </thead>
+                <tbody id="cart-items"></tbody>
+              </table>
+            </div>
+
+            <div class="sale-toolbar">
+              <label>
+                <span>Vendu par</span>
+                <select id="seller-select">
+                  <option value="">Sélectionner</option>
+                  <option value="Ed-Gi">Ed-Gi</option>
+                  <option value="Samantha">Samantha</option>
+                  <option value="Mme Edeline">Mme Edeline</option>
+                  <option value="Rood-Jerry">Rood-Jerry</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Mode de paiement</span>
+                <select id="payment-mode">
+                  <option value="Cash">Cash</option>
+                  <option value="MonCash">MonCash</option>
+                  <option value="Natcash">Natcash</option>
+                  <option value="Carte">Carte</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="summary-box">
+              <div class="summary-row">
+                <span>Sous-total</span>
+                <strong id="subtotal-amount">0 HTG</strong>
+              </div>
+              <div class="summary-row discount-row">
+                <span>Réduction</span>
+                <strong id="discount-amount">0 HTG</strong>
+              </div>
+              <div class="summary-row">
+                <span>Total</span>
+                <strong id="total-amount">0 HTG</strong>
+              </div>
+            </div>
+
+            <div class="loyalty-box">
+              <div class="loyalty-header">
+                <span>Carte de fidélité</span>
+                <span id="loyalty-status" class="status-badge">Aucune carte</span>
+              </div>
+              <p id="loyalty-message">Aucune carte active.</p>
+            </div>
+
+            <button id="confirm-sale" class="validate-btn" type="button">Valider la Vente</button>
+          </div>
+        </aside>
+      </main>
+
+      <section class="panel report-panel">
+        <div class="report-header">
+          <div>
+            <p class="eyebrow">Rapports</p>
+            <h2>Tableau de bord</h2>
+          </div>
+
+          <div class="report-controls">
+            <label>
+              <span>Recherche client</span>
+              <input id="report-customer-search" type="text" placeholder="Nom ou numéro" />
+            </label>
+            <label>
+              <span>Période</span>
+              <select id="report-range">
+                <option value="day">Journalier</option>
+                <option value="week">Hebdomadaire</option>
+                <option value="month" selected>Mensuel</option>
+              </select>
+            </label>
+            <button id="download-report" class="accent-btn" type="button">Télécharger Excel</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card accent">
+            <span>Argent rentrée</span>
+            <strong id="kpi-revenue">0 HTG</strong>
+          </div>
+          <div class="kpi-card">
+            <span>Nb. ventes</span>
+            <strong id="kpi-sales-count">0</strong>
+          </div>
+          <div class="kpi-card">
+            <span>Ticket moyen</span>
+            <strong id="kpi-average-ticket">0 HTG</strong>
+          </div>
+          <div class="kpi-card">
+            <span>Réduction totale</span>
+            <strong id="kpi-discount-total">0 HTG</strong>
+          </div>
+        </div>
+
+        <div class="report-table-wrap">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Client</th>
+                <th>Vendeur</th>
+                <th>Paiement</th>
+                <th>Montant</th>
+                <th>Réduction</th>
+                <th>Articles</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="report-rows">
+              <tr>
+                <td colspan="8" class="muted" style="padding: 18px; text-align: center;">Aucune vente pour cette période.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="report-cta-box">
+          <button id="open-customer-group-page" class="secondary-btn" type="button">Voir les ventes regroupées par personne</button>
+        </div>
+      </section>
+    </div>
+
+    <div id="quick-add-modal" class="hidden" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); align-items:center; justify-content:center;">
+      <div style="width:min(420px,90vw); background:#fff; border-radius:18px; padding:22px; box-shadow:0 18px 38px rgba(0,0,0,0.2);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+          <h3 style="margin:0;">Ajouter un article express</h3>
+          <button type="button" id="close-modal" style="border:none; background:transparent; font-size:1.3rem; cursor:pointer;">×</button>
+        </div>
+        <form id="quick-add-form" style="display:flex; flex-direction:column; gap:12px;">
+          <label>
+            <span>Nom</span>
+            <input id="quick-name" type="text" placeholder="Nom de l’article" />
+          </label>
+          <label>
+            <span>Prix</span>
+            <input id="quick-price" type="number" min="0" step="1" placeholder="0" />
+          </label>
+          <button class="accent-btn" type="submit">Ajouter au panier</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./pos.js"></script>
+  </body>
+</html>
