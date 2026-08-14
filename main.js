@@ -54,12 +54,20 @@ function convertImageUrl(url) {
   return url;
 }
 
+function resolveDataPath(fileName) {
+  const pathname = window.location.pathname;
+  if (pathname.includes('/admin/')) {
+    return `../${fileName}`;
+  }
+  return `./${fileName}`;
+}
+
 // ─── LOAD DATA depuis les fichiers JSON ───
 async function loadData() {
   try {
     const [productsRes, settingsRes] = await Promise.all([
-      fetch('/data/products.json'),
-      fetch('/data/settings.json')
+      fetch(resolveDataPath('data/products.json')),
+      fetch(resolveDataPath('data/settings.json'))
     ]);
 
     if (productsRes.ok) {
