@@ -1,4 +1,4 @@
-﻿const SUPABASE_URL = 'https://zpwxoooqnxvxoahltjkh.supabase.co';
+const SUPABASE_URL = 'https://zpwxoooqnxvxoahltjkh.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_amt16PERz3_dyckZWf3oUA_2SzshhGy';
 
 const supabaseClientFactory = window.supabase && typeof window.supabase.createClient === 'function'
@@ -365,21 +365,47 @@ function renderCart() {
 }
 
 async function searchCustomer(query) {
-  const clean = normalizeWhitespace(query).toLowerCase();
-  const customers = await readCustomers();
+  if (!supabaseClient) return null;
 
-  if (!clean) return customers[0] || null;
+  const clean = normalizeWhitespace(query).toLowerCase();
+
+  if (!clean) {
+    const { data, error } = await supabaseClient
+      .from('customers')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(1);
+    if (error) {
+      console.error(error);
+      return null;
+    }
+    return mapCustomerRow(data?.[0] || null);
+  }
 
   const digits = clean.replace(/\D/g, '');
-  return customers.find((customer) => {
-    const phone = String(customer.phone || '').replace(/\D/g, '');
-    const card = String(customer.cardNumber || '').toLowerCase();
-    const firstName = String(customer.firstname || '').toLowerCase();
-    const lastName = String(customer.lastname || '').toLowerCase();
-    const fullName = `${customer.firstname || ''} ${customer.lastname || ''}`.toLowerCase();
+  const escaped = clean.replace(/[%_,]/g, '');
+  const filters = [
+    `card_number.ilike.%${escaped}%`,
+    `firstname.ilike.%${escaped}%`,
+    `lastname.ilike.%${escaped}%`,
+    `name.ilike.%${escaped}%`
+  ];
+  if (digits) {
+    filters.push(`phone.ilike.%${digits}%`);
+  }
 
-    return card.includes(clean) || phone.includes(digits) || firstName.includes(clean) || lastName.includes(clean) || fullName.includes(clean);
-  }) || null;
+  const { data, error } = await supabaseClient
+    .from('customers')
+    .select('*')
+    .or(filters.join(','))
+    .limit(5);
+
+  if (error) {
+    console.error(error);
+    return null;
+  }
+
+  return mapCustomerRow((data || [])[0] || null);
 }
 
 function renderCustomerCard(customer) {
@@ -388,6 +414,9 @@ function renderCustomerCard(customer) {
     els.clientResult.innerHTML = '<p class="muted">Aucun client sélectionné.</p>';
     els.loyaltyStatus.textContent = 'Aucune carte';
     els.loyaltyMessage.textContent = 'Aucune carte active.';
+    
+    // Afficher le formulaire de création si aucun client trouvé / sélectionné
+    toggleCustomerCreation(true);
     return;
   }
 
@@ -404,11 +433,27 @@ function renderCustomerCard(customer) {
       <span>📞 ${customer.phone || '—'}</span>
       <span>🧾 Tampons : ${Number(customer.nb_achats || 0)}/10</span>
     </div>
+    <div class="client-card-actions">
+      <button type="button" id="client-options-toggle" class="ghost-btn small" title="Options client">⋯</button>
+      <button type="button" id="delete-customer-btn" class="remove-btn hidden">Supprimer ce client</button>
+    </div>
   `;
 
   const status = getLoyaltyStatus(customer);
   els.loyaltyStatus.textContent = status.label;
   els.loyaltyMessage.textContent = status.message;
+
+  const optionsToggle = document.getElementById('client-options-toggle');
+  const deleteBtn = document.getElementById('delete-customer-btn');
+  if (optionsToggle && deleteBtn) {
+    optionsToggle.addEventListener('click', () => {
+      deleteBtn.classList.toggle('hidden');
+    });
+    deleteBtn.addEventListener('click', handleDeleteCustomerClick);
+  }
+
+  // Masquer le formulaire Nouveau client puisqu'un client est trouvé !
+  toggleCustomerCreation(false);
 }
 
 async function buildCustomerNumber() {
@@ -560,8 +605,15 @@ function openWhatsAppReceipt(sale) {
 }
 
 async function getReceiptNumber() {
-  const sales = await readSales();
-  return sales.length + 1;
+  if (!supabaseClient) return 1;
+  const { count, error } = await supabaseClient
+    .from('sales')
+    .select('id', { count: 'exact', head: true });
+  if (error) {
+    console.error(error);
+    return 1;
+  }
+  return (count || 0) + 1;
 }
 
 async function validateSale() {
@@ -625,8 +677,13 @@ async function validateSale() {
   openWhatsAppReceipt(createdSale);
   state.cart = [];
   renderCart();
+  state.selectedCustomer = null;
+  renderCustomerCard(null);
+  els.clientSearch.value = '';
+  els.sellerSelect.value = '';
+  els.paymentMode.value = 'Cash';
   alert('Vente validée et reçu WhatsApp généré.');
-  setTimeout(() => window.location.reload(), 250);
+  renderReportDashboard();
 }
 
 function clearCurrentSale() {
@@ -778,9 +835,12 @@ async function deleteSale(saleId) {
 }
 
 function setupEvents() {
-  els.searchClient.addEventListener('click', async () => {
+ els.searchClient.addEventListener('click', async () => {
     const found = await searchCustomer(els.clientSearch.value);
     renderCustomerCard(found);
+    if (!found) {
+      toggleCustomerCreation(true);
+    }
   });
 
   els.clientSearch.addEventListener('keydown', async (event) => {
@@ -788,20 +848,9 @@ function setupEvents() {
       event.preventDefault();
       const found = await searchCustomer(els.clientSearch.value);
       renderCustomerCard(found);
-    }
-  });
-
-  els.reportCustomerSearch.addEventListener('keydown', async (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      await renderReportDashboard();
-    }
-  });
-
-  els.productSearch.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      renderProducts();
+      if (!found) {
+        toggleCustomerCreation(true);
+      }
     }
   });
 
@@ -818,6 +867,50 @@ function setupEvents() {
   els.openCustomerGroupPage.addEventListener('click', () => {
     window.location.href = './customer-sales-report.html';
   });
+}
+
+const DELETE_CUSTOMER_PASSWORD = 'house of meila';
+
+async function handleDeleteCustomerClick() {
+  if (!state.selectedCustomer) return;
+
+  const password = window.prompt('Mot de passe requis pour supprimer ce client :');
+
+  if (password === null) {
+    // Utilisateur a annulé la saisie du mot de passe.
+    return;
+  }
+
+  if (normalizeWhitespace(password).toLowerCase() !== DELETE_CUSTOMER_PASSWORD) {
+    alert('Mot de passe incorrect. Suppression annulée.');
+    return;
+  }
+
+  const confirmed = window.confirm('Voulez-vous vraiment supprimer définitivement ce client ? Cette action est irréversible.');
+  if (!confirmed) {
+    return;
+  }
+
+  const deleted = await deleteCustomerRecord(state.selectedCustomer.id);
+  if (!deleted) return;
+
+  state.selectedCustomer = null;
+  els.clientSearch.value = '';
+  renderCustomerCard(null);
+}
+
+async function deleteCustomerRecord(id) {
+  if (!supabaseClient || !id) return false;
+
+  const { error } = await supabaseClient.from('customers').delete().eq('id', id);
+  if (error) {
+    console.error(error);
+    alert('Impossible de supprimer ce client.');
+    return false;
+  }
+
+  alert('Client supprimé avec succès.');
+  return true;
 }
 
 async function init() {
