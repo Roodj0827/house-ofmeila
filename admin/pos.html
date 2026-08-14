@@ -261,6 +261,28 @@
         display: none !important;
       }
 
+      .category-chip {
+        border: 1px solid rgba(61,16,51,0.18);
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        background: rgba(61,16,51,0.05);
+        color: var(--primary);
+        cursor: pointer;
+        transition: background 0.15s ease, color 0.15s ease;
+      }
+
+      .category-chip:hover {
+        background: rgba(61,16,51,0.12);
+      }
+
+      .category-chip.active {
+        background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+        color: #fff;
+        border-color: transparent;
+      }
+
       .new-customer-box {
         margin-top: 18px;
       }
@@ -607,6 +629,8 @@
             <div class="inline-search product-search-wrap">
               <input id="product-search" type="text" placeholder="Rechercher un article" />
             </div>
+
+            <div id="category-filters" class="category-filters" style="display:flex; flex-wrap:wrap; gap:6px; margin:10px 0;"></div>
 
             <div id="product-results" class="product-results"></div>
           </div>
