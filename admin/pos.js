@@ -513,25 +513,46 @@ async function createCustomerFromForm(event) {
 }
 
 function openModal() {
+  // La classe "hidden" (display:none !important) doit être retirée,
+  // sinon elle écrase le style.display appliqué ci-dessous.
+  els.quickAddModal.classList.remove('hidden');
   els.quickAddModal.style.display = 'flex';
 }
 
 function closeModal() {
+  els.quickAddModal.classList.add('hidden');
   els.quickAddModal.style.display = 'none';
 }
 
+// Article express : ajoute une ligne libre (nom + prix saisis) UNIQUEMENT au panier
+// de la vente en cours, en mémoire (state.cart). Ceci ne doit JAMAIS :
+//  - toucher state.products (le catalogue chargé depuis data/products.json),
+//  - appeler une fonction d'écriture vers data/products.json ou la table
+//    "products" de Supabase,
+//  - persister au-delà du panier courant (pas de localStorage/sessionStorage).
+// L'article express est nettoyé avec le reste du panier par validateSale()
+// et clearCurrentSale() (state.cart = []), donc il ne laisse aucune trace
+// dans le catalogue général une fois la vente validée ou réinitialisée.
 function addQuickProduct(event) {
   event.preventDefault();
   const name = normalizeWhitespace(els.quickName.value);
   const price = Number(els.quickPrice.value || 0);
 
-  if (!name || !price) {
+  if (!name || !price || price <= 0) {
     alert('Indiquez le nom et le prix de l’article express.');
     return;
   }
 
   const tempId = `express-${Date.now()}`;
-  state.cart.push({ id: tempId, name, price, quantity: 1, source: 'quick' });
+  state.cart.push({
+    id: tempId,
+    name,
+    price,
+    quantity: 1,
+    source: 'quick',
+    isTemporary: true, // marqueur explicite : jamais persisté au catalogue
+    catalogId: null    // ne correspond à aucun produit du catalogue
+  });
   els.quickAddForm.reset();
   closeModal();
   renderCart();
@@ -601,7 +622,23 @@ function openWhatsAppReceipt(sale) {
   const targetPhone = clientPhone || formatClientPhoneForWhatsApp(state.settings.whatsapp || '');
   const receipt = buildReceiptText(sale);
   const url = `https://wa.me/${targetPhone}?text=${encodeURIComponent(receipt)}`;
-  window.open(url, '_blank');
+
+  // Popup compact plutôt qu'un nouvel onglet plein écran : la page de caisse
+  // reste visible en arrière-plan. Même nom de fenêtre ("receipt-whatsapp")
+  // pour réutiliser la même popup à chaque vente au lieu d'en empiler une nouvelle.
+  const popupWidth = 420;
+  const popupHeight = 640;
+  const left = Math.max(0, (window.screenX || 0) + (window.outerWidth || popupWidth) - popupWidth - 24);
+  const top = Math.max(0, (window.screenY || 0) + 60);
+  const features = `noopener,width=${popupWidth},height=${popupHeight},left=${left},top=${top}`;
+
+  window.open(url, 'receipt-whatsapp', features);
+
+  // La popup prend le focus à l'ouverture ; on le redonne à la caisse
+  // juste après pour que le vendeur puisse enchaîner sans interruption.
+  setTimeout(() => {
+    window.focus();
+  }, 350);
 }
 
 async function getReceiptNumber() {
