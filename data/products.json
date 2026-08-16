@@ -509,6 +509,14 @@
       "desc": "ollier pendentif solitaire, sertis de diamants de synthèse taille brillant sur de l'or jaune",
       "image": "https://us.pandora.net/dw/image/v2/AAVX_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwfc9a2609/productimages/singlepackshot_rect_base/352877C01_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
       "isSoldOut": false
+    },
+    {
+      "name": "Bracelet Chaîne Solitaire Diamant 3mm – Edge of Ember",
+      "price": 1500,
+      "category": "collier",
+      "desc": "Bracelet en chaîne fine orné d'un diamant rond de 3 mm serti clos au centre.",
+      "image": "https://edgeofember.com/cdn/shop/files/3mmSolitaireDiamondBracelet_6aa4cf85-4991-408d-b34a-d5d5ed33f5ab.jpg?v=1727249203&width=1445",
+      "isSoldOut": false
     }
   ]
 }
