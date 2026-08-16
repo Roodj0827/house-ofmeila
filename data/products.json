@@ -517,6 +517,14 @@
       "desc": "Bracelet en chaîne fine orné d'un diamant rond de 3 mm serti clos au centre.",
       "image": "https://edgeofember.com/cdn/shop/files/3mmSolitaireDiamondBracelet_6aa4cf85-4991-408d-b34a-d5d5ed33f5ab.jpg?v=1727249203&width=1445",
       "isSoldOut": false
+    },
+    {
+      "name": "Pendentif Cœur Bombé en Argent Massif",
+      "price": 1500,
+      "category": "collier",
+      "desc": "Un collier au design romantique et contemporain, arborant un pendentif en forme de cœur bombé et volumineux. Conçu avec une finition poli miroir d'un éclat exceptionnel, ce bijou est suspendu à une chaîne à maillons fins et délicats pour une touche d'élégance intemporelle au quotidien.",
+      "image": "https://i.pinimg.com/1200x/3d/cb/1b/3dcb1b72aa0b71d5900e80dbbc294017.jpg",
+      "isSoldOut": false
     }
   ]
 }
