@@ -609,7 +609,7 @@
     {
       "name": "Bijou d'Oreille",
       "price": 1500,
-      "category": "collier",
+      "category": "Bijou d'oreille",
       "desc": "Une bague large et minimaliste au style épuré avec une finition dorée miroir très brillante. Grâce à son anneau ouvert et ajustable, elle peut être portée facilement sur différents doigts ou être utilisée comme faux piercing d'oreille (ear cuff) audacieux.",
       "image": "https://obsidian.ro/cdn/shop/files/Cercel-Earcuff-Cartilage-Clip-01_1080x1080.jpg?v=1689782692",
       "isSoldOut": false
