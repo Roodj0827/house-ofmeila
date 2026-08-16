@@ -597,6 +597,14 @@
       "desc": "Un collier fin et lumineux parsemé de petits charmes rectangulaires sertis de zirconiums et de pastilles dorées. Ce bijou délicat capture la lumière sous tous les angles pour apporter une touche de glamour discret à vos tenues.",
       "image": "https://cdn.eternz.com/thumbnails/products/1_8455b470_thumbnail_1024.jpg",
       "isSoldOut": false
+    },
+    {
+      "name": "Collier Chaîne à Perles Métalliques Espacées Dorées",
+      "price": 1500,
+      "category": "collier",
+      "desc": "Un collier intemporel et élégant composé d'une fine chaîne dorée rythmée par de petites perles sphériques polies. Idéal à porter seul pour un look épuré ou à superposer avec d'autres colliers.",
+      "image": "https://lutiro.com/cdn/shop/files/ChatGPT_Image_Feb_8_2026_02_31_44_PM_grande.png?v=1770579367",
+      "isSoldOut": false
     }
   ]
 }
