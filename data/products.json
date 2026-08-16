@@ -533,6 +533,14 @@
       "desc": "Un bracelet élégant au design asymétrique combinant une demi-chaîne sertie de strass étincelants et une demi-chaîne dorée rehaussée du logo monogramme signature. Doté d'un fermoir mousqueton ajustable et d'une plaque gravée, il apporte une touche de luxe raffiné à votre poignet.",
       "image": "https://i.pinimg.com/1200x/b5/41/9e/b5419e8976657c28fbb2eab4b0ecbf4b.jpg",
       "isSoldOut": false
+    },
+    {
+      "name": "Collier Pendentif Goutte d'Eau Dorée – Lisse & Bombée",
+      "price": 1500,
+      "category": "collier",
+      "desc": "Un collier moderne et minimaliste arborant un pendentif fluide en forme de goutte d'eau à la finition dorée miroir. Suspendu à une chaîne fine et délicate, c'est la pièce parfaite pour apporter une touche d'élégance contemporaine au quotidien.",
+      "image": "https://i.pinimg.com/1200x/2e/b6/b2/2eb6b2e5c7f2a5e8f52fc3b64d0bbbb8.jpg",
+      "isSoldOut": false
     }
   ]
 }
