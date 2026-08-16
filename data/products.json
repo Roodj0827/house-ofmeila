@@ -541,6 +541,14 @@
       "desc": "Un collier moderne et minimaliste arborant un pendentif fluide en forme de goutte d'eau à la finition dorée miroir. Suspendu à une chaîne fine et délicate, c'est la pièce parfaite pour apporter une touche d'élégance contemporaine au quotidien.",
       "image": "https://i.pinimg.com/1200x/2e/b6/b2/2eb6b2e5c7f2a5e8f52fc3b64d0bbbb8.jpg",
       "isSoldOut": false
+    },
+    {
+      "name": "Collier Pendentif Cylindre Triple Rang Strass – Or Jaune",
+      "price": 1500,
+      "category": "collier",
+      "desc": "Un collier raffiné doté d'un pendentif cylindrique miniature composé de trois rangs sertis de petits oxydes de zirconium scintillants. Monté sur une chaîne fine dorée, il capte magnifiquement la lumière pour un look sophistiqué.",
+      "image": "https://i.pinimg.com/1200x/2e/b6/b2/2eb6b2e5c7f2a5e8f52fc3b64d0bbbb8.jpg",
+      "isSoldOut": false
     }
   ]
 }
