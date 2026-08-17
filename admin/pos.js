@@ -643,15 +643,32 @@ function formatClientPhoneForWhatsApp(phone) {
   return `509${digits}`;
 }
 
+// Détecte un téléphone (mobile) vs un PC. On se base sur le user-agent
+// plutôt que la largeur d'écran, car une fenêtre de PC redimensionnée
+// ne doit pas être traitée comme un mobile.
+function isMobileDevice() {
+  const ua = navigator.userAgent || navigator.vendor || '';
+  return /android|iphone|ipad|ipod|mobile/i.test(ua);
+}
+
 function openWhatsAppReceipt(sale) {
   const clientPhone = formatClientPhoneForWhatsApp(state.selectedCustomer?.phone || sale.customer?.phone || '');
   const targetPhone = clientPhone || formatClientPhoneForWhatsApp(state.settings.whatsapp || '');
   const receipt = buildReceiptText(sale);
   const url = `https://wa.me/${targetPhone}?text=${encodeURIComponent(receipt)}`;
 
-  // Popup compact plutôt qu'un nouvel onglet plein écran : la page de caisse
-  // reste visible en arrière-plan. Même nom de fenêtre ("receipt-whatsapp")
-  // pour réutiliser la même popup à chaque vente au lieu d'en empiler une nouvelle.
+  if (isMobileDevice()) {
+    // Sur téléphone : redirection directe dans le même onglet. wa.me est un
+    // lien universel intercepté par WhatsApp Business (si installée) qui
+    // ouvre directement la conversation dans l'app, sans passer par une popup.
+    window.location.href = url;
+    return;
+  }
+
+  // Sur PC : popup compact plutôt qu'un nouvel onglet plein écran, pour que la
+  // page de caisse reste visible en arrière-plan. Même nom de fenêtre
+  // ("receipt-whatsapp") pour réutiliser la même popup à chaque vente au lieu
+  // d'en empiler une nouvelle.
   const popupWidth = 420;
   const popupHeight = 640;
   const left = Math.max(0, (window.screenX || 0) + (window.outerWidth || popupWidth) - popupWidth - 24);
