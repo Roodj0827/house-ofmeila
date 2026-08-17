@@ -1696,6 +1696,22 @@ function setCategoryInModal(cat) {
   }
 }
 
+function syncCategoryOptions() {
+  const select = document.getElementById('modal-category');
+  const customCats = [...new Set(products.map(p => p.category).filter(Boolean))]
+    .filter(c => !BASE_CATS.includes(c));
+  customCats.forEach(cat => {
+    let found = false;
+    for (let opt of select.options) { if (opt.value === cat) { found = true; break; } }
+    if (!found) {
+      const opt = document.createElement('option');
+      opt.value = cat;
+      opt.textContent = cat;
+      select.insertBefore(opt, select.lastElementChild);
+    }
+  });
+}
+
 function openProductModal(id) {
   document.getElementById('modal-product-id').value = id || '';
   // Reset custom category field
@@ -2004,6 +2020,7 @@ function showSaveIndicator() {
 async function initApp() {
   try {
     await loadData();
+    syncCategoryOptions();
     loadSettingsForm();
     renderDashboard();
   } catch(e) {
