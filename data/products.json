@@ -725,6 +725,14 @@
       "desc": "Une montre au charme vintage et sophistiqué dotée d'un cadran ovale noir intense aux aiguilles et index dorés, sublimée par un bracelet extensible en acier doré. Une pièce chic et intemporelle pour habiller le poignet.",
       "image": "https://img.ltwebstatic.com/images3_spmp/2023/06/16/16869306907812abfcdfa3a8db34f863f3e74e4005_thumbnail_750x999.webp",
       "isSoldOut": false
+    },
+    {
+      "name": "Montre Femme Cadran Ovale Blanc & Bracelet Métallique Doré Extensible",
+      "price": 1500,
+      "category": "montre",
+      "desc": "Une déclinaison lumineuse et classique arborant un cadran ovale blanc épuré rehaussé de détails dorés, associée à un bracelet extensible ajusté. Un accessoire élégant et confortable idéal pour un style raffiné au quotidien.",
+      "image": "https://vaurie.com/cdn/shop/files/le-marais-watch-moonlight-pos1.png?v=1782241795",
+      "isSoldOut": false
     }
   ]
 }
