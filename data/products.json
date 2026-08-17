@@ -717,6 +717,14 @@
       "desc": "Un bracelet porte-bonheur original combinant un cordon rouge intense et une double chaîne dorée. Son médaillon central ajouré et serti de cristaux rouges arbore un motif traditionnel porteur de chance et de prospérité.",
       "image": "https://m.media-amazon.com/images/I/61na7fAZskL._AC_UY1000_.jpg",
       "isSoldOut": false
+    },
+    {
+      "name": "Montre Femme Cadran Ovale Noir & Bracelet Métallique Doré Extensible",
+      "price": 1500,
+      "category": "montre",
+      "desc": "Une montre au charme vintage et sophistiqué dotée d'un cadran ovale noir intense aux aiguilles et index dorés, sublimée par un bracelet extensible en acier doré. Une pièce chic et intemporelle pour habiller le poignet.",
+      "image": "https://img.ltwebstatic.com/images3_spmp/2023/06/16/16869306907812abfcdfa3a8db34f863f3e74e4005_thumbnail_750x999.webp",
+      "isSoldOut": false
     }
   ]
 }
