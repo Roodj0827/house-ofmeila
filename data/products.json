@@ -741,6 +741,14 @@
       "desc": "Un collier délicat et épuré rehaussé par un petit alignement central de perles métalliques dorées. Une création au style scandinave minimaliste, parfaite à porter seule ou superposée à d'autres bijoux.",
       "image": "https://img.ltwebstatic.com/images3_spmp/2024/04/09/55/1712670671da3afedbbcf4a84116dba491e9be6b7b_thumbnail_750x999.webp",
       "isSoldOut": false
+    },
+    {
+      "name": "Collier Pendentif Goutte Fluide Argentée",
+      "price": 1500,
+      "category": "collier",
+      "desc": "Un collier moderne arborant un pendentif sculpté en forme de goutte d'eau lisse et brillante sur une fine chaîne argentée. Un design organique et fluide qui apporte une touche d'élégance contemporaine.",
+      "image": "https://m.media-amazon.com/images/I/619METjx5OL._AC_UY1000_.jpg",
+      "isSoldOut": false
     }
   ]
 }
