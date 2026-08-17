@@ -685,6 +685,14 @@
       "desc": "Un collier tendance au style lariat comportant un perle cylindrique blanche rehaussée d'or, traversée par une chaîne pendante terminée par une pierre brillante. Un bijou chic et moderne qui met en valeur les décolletés.",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIuXsgYddtuR_rEpKtThzvy1nR2F5czOEU28O44nRTZQ&s",
       "isSoldOut": false
+    },
+    {
+      "name": "Collier Doré à Pendentif Perle Poire & Zirconium",
+      "price": 1500,
+      "category": "collier",
+      "desc": "L'alliance parfaite de l'élégance classique et de la modernité : une somptueuse perle en forme de goutte surmontée d'un brillant oxyde de zirconium, le tout suspendu à une chaîne dorée.",
+      "image": "https://aquarianpearls.com.au/wp-content/uploads/2025/01/20018269-uncropped.jpg",
+      "isSoldOut": false
     }
   ]
 }
