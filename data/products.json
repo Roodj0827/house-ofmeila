@@ -669,6 +669,14 @@
       "desc": "Un collier d'une élégance classique arborant un oxyde de zirconium brillant suspendu à une fine chaîne dorée. Un bijou intemporel et lumineux, parfait pour sublimer le port de tête au quotidien.",
       "image": "https://www.histoiredor.com/dw/image/v2/BCQS_PRD/on/demandware.static/-/Sites-THOM_CATALOG/default/dwd9cbc597/images/13260013028-master_HO.jpg?sw=474&sh=474",
       "isSoldOut": false
+    },
+    {
+      "name": "Collier dorée aux Trois Triangles de Zirconiums",
+      "price": 1500,
+      "category": "collier",
+      "desc": "",
+      "image": "https://www.asonsteel.com/cdn/shop/files/IMG_6966_71c9de2c-dcf6-4453-b009-84fc5a99469c.jpg?v=1736538588&width=1946",
+      "isSoldOut": false
     }
   ]
 }
