@@ -1,14 +1,6 @@
 {
   "items": [
     {
-      "name": "Colier et bracelet en chaine Figaro",
-      "price": 1000,
-      "category": "jeu_de_bijoux",
-      "desc": "Bijoux pour hommes en acier inoxydable",
-      "image": "https://i.pinimg.com/1200x/7b/be/9d/7bbe9d4dfd174a020e771f23389bfb3a.jpg",
-      "isSoldOut": true
-    },
-    {
       "name": "Twisted Rope Chain",
       "price": 750,
       "category": "collier",
