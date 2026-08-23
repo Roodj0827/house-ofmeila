@@ -73,14 +73,6 @@
       "image": "https://i.pinimg.com/736x/cc/e9/f7/cce9f7bb0b3bd0d8a50094f8ee8fdabe.jpg"
     },
     {
-      "name": "Mini Lunettes anti bleu",
-      "price": 500,
-      "category": "lunettes",
-      "desc": "Ces lunettes sont des lunettes rondes, bloquant la lumière bleue.",
-      "image": "https://i.pinimg.com/736x/df/f4/55/dff45560df3078beabdcd9b17d8010f3.jpg",
-      "isSoldOut": true
-    },
-    {
       "name": "Lunettes fantaisie",
       "price": 1000,
       "category": "lunettes",
