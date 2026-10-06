@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg: #f9eff3;
   --panel: rgba(255,255,255,0.9);
   --panel-strong: #f7edf2;
@@ -20,3 +20,55 @@ input, select { width: 100%; border: 1px solid rgba(61,16,51,0.18); background: 
 .secondary-btn { background: rgba(61,16,51,0.08); color: var(--primary); }
 .ghost-btn { background: rgba(61,16,51,0.06); color: var(--primary); }
 .hidden { display: none !important; }
+
+/* ===== Navigation ===== */
+.topbar { flex-wrap: wrap; }
+.topbar-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+.nav-btn { border: 1px solid var(--line); background: rgba(61,16,51,0.05); color: var(--primary); border-radius: 999px; padding: 10px 18px; font-weight: 700; cursor: pointer; transition: background .15s ease, color .15s ease; }
+.nav-btn:hover { background: rgba(61,16,51,0.12); }
+.nav-btn.active { background: linear-gradient(135deg, var(--primary), var(--primary-soft)); color: #fff; border-color: transparent; }
+.operator-label { flex-direction: row; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.operator-label select { padding: 9px 12px; min-width: 130px; }
+
+/* ===== Badges de paiement ===== */
+.pay-badge { display: inline-flex; align-items: center; padding: 5px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 800; letter-spacing: .04em; white-space: nowrap; }
+.pay-badge.paid { background: rgba(27,143,103,0.15); color: #12694c; }
+.pay-badge.partial { background: rgba(232,134,26,0.18); color: #a45a00; }
+.pay-badge.unpaid { background: rgba(200,45,45,0.14); color: #a52c2c; }
+
+/* ===== Bloc paiement (caisse) ===== */
+.payment-box { margin-top: 18px; padding: 16px; border-radius: 16px; background: rgba(255,255,255,0.8); border: 1px solid rgba(61,16,51,0.1); display: flex; flex-direction: column; gap: 12px; }
+.payment-box-head { display: flex; justify-content: space-between; align-items: center; }
+.payment-hint { margin: 0; font-size: 0.82rem; }
+.inline-search.no-margin { margin-bottom: 0; }
+.check-row { flex-direction: row; align-items: center; gap: 10px; cursor: pointer; }
+.check-row input { width: auto; }
+.form-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.form-actions .secondary-btn { flex: 1; }
+
+/* ===== KPI ===== */
+.kpi-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) !important; }
+
+/* ===== Tableaux ===== */
+.report-table td, .report-table th { white-space: nowrap; }
+.row-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.row-actions button { border: none; border-radius: 8px; padding: 6px 10px; font-size: 0.78rem; font-weight: 700; cursor: pointer; background: rgba(61,16,51,0.08); color: var(--primary); }
+.row-actions button:hover { background: rgba(61,16,51,0.16); }
+.row-actions button.act-pay { background: rgba(27,143,103,0.15); color: #12694c; }
+.row-actions button.act-wa { background: rgba(37,211,102,0.18); color: #0b7a3a; }
+.row-actions button.act-del { background: rgba(180,57,30,0.1); color: #a52c2c; }
+.overdue { color: #a52c2c; font-weight: 800; }
+
+/* ===== Modales ===== */
+.modal { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,0.45); }
+.modal-card { width: min(460px, 100%); max-height: 92vh; overflow: auto; background: #fff; border-radius: 18px; padding: 22px; box-shadow: 0 18px 38px rgba(0,0,0,0.25); }
+.modal-card.wide { width: min(860px, 100%); }
+.modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.modal-head h3 { margin: 0; }
+.modal-x { border: none; background: transparent; font-size: 1.4rem; cursor: pointer; color: var(--primary); }
+.modal-body { display: flex; flex-direction: column; gap: 12px; }
+.modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.modal-actions button { flex: 1; min-width: 140px; }
+.info-box { background: rgba(247,237,242,0.8); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 0.9rem; line-height: 1.5; }
+.log-list { margin: 0; padding-left: 18px; font-size: 0.88rem; line-height: 1.6; }
+.edit-table input { padding: 8px 10px; }
