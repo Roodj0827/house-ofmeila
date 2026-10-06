@@ -4,7 +4,7 @@
 const SUPABASE_URL = 'https://zpwxoooqnxvxoahltjkh.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_amt16PERz3_dyckZWf3oUA_2SzshhGy';
 const ADMIN_PASSWORD = 'house of meila'; // ⚠ vérifié côté navigateur seulement (voir notes)
-const SELLERS = ['Ed-Gi', 'Samantha', 'Mme Edeline', 'Rood-Jerry'];
+const SELLERS = ['Meila', 'Samantha', 'Mme Edeline', 'Rood-Jerry'];
 const WHATSAPP_TAB_NAME = 'whatsapp_web_tab';
 const STATUS_LABELS = { PAID: 'Acquittée', PARTIAL: 'Partiellement Acquittée', UNPAID: 'Non Acquittée' };
 const MONTHS = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
@@ -604,6 +604,7 @@ function renderCart() {
 function updateMobileCartBar() {
   const qty = state.cart.reduce((t, i) => t + Number(i.quantity || 0), 0);
   const show = state.view === 'caisse' && qty > 0;
+  if (!els.mobileCartBar) return;
   els.mobileCartBar.classList.toggle('hidden', !show);
   if (show) {
     els.mobileCartBar.textContent = `🛒 Voir le panier · ${qty} article${qty > 1 ? 's' : ''} · ${formatCurrency(getDiscountedTotal().finalTotal)}`;
@@ -1218,7 +1219,16 @@ function inPeriod(iso, bounds) {
   return d >= bounds.start && d < bounds.end;
 }
 
-async function renderReportDashboard({ refresh = true } = {}) {
+async function renderReportDashboard(options = {}) {
+  try {
+    await renderReportDashboardUnsafe(options);
+  } catch (error) {
+    console.error('Erreur renderReportDashboard', error);
+    els.reportRows.innerHTML = `<tr><td colspan="9" class="muted" style="padding:18px; text-align:center;">Erreur d'affichage du rapport : ${esc(error.message)}</td></tr>`;
+  }
+}
+
+async function renderReportDashboardUnsafe({ refresh = true } = {}) {
   if (refresh) await refreshSales();
   const bounds = getPeriodBounds();
   const search = normalizeWhitespace(els.reportCustomerSearch.value).toLowerCase();
@@ -1256,9 +1266,11 @@ async function renderReportDashboard({ refresh = true } = {}) {
   els.kpiNatcash.textContent = formatCurrency(byMode.Natcash || 0);
   els.kpiOther.textContent = formatCurrency(other);
 
-  els.reportSummary.textContent = state.sales.length
-    ? `${rows.length} fiche${rows.length > 1 ? 's' : ''} affichée${rows.length > 1 ? 's' : ''} sur ${state.sales.length} au total.`
-    : '';
+  if (els.reportSummary) {
+    els.reportSummary.textContent = state.sales.length
+      ? `${rows.length} fiche${rows.length > 1 ? 's' : ''} affichée${rows.length > 1 ? 's' : ''} sur ${state.sales.length} au total.`
+      : '';
+  }
 
   if (!rows.length) {
     let msg = 'Aucune vente pour cette période.';
@@ -1537,7 +1549,7 @@ function setupEvents() {
   els.quickAddForm.addEventListener('submit', addQuickProduct);
   els.closeModal.addEventListener('click', closeModal);
 
-  els.mobileCartBar.addEventListener('click', () => document.querySelector('.panel-right').scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  if (els.mobileCartBar) els.mobileCartBar.addEventListener('click', () => document.querySelector('.panel-right').scrollIntoView({ behavior: 'smooth', block: 'start' }));
 
   // caisse / paiement
   els.amountPaid.addEventListener('input', () => { state.amountPaidTouched = true; updatePaymentSummary(); });
@@ -1611,7 +1623,24 @@ function setupEvents() {
 /* =========================================================
    INITIALISATION
    ========================================================= */
+/** Éléments facultatifs : leur absence ne bloque rien. */
+const OPTIONAL_ELEMENTS = ['reportSummary', 'mobileCartBar'];
+
+/** Détecte un pos.html plus ancien que pos.js (cause classique d'un affichage vide). */
+function checkPageIntegrity() {
+  const missing = Object.entries(els)
+    .filter(([key, el]) => el === null && !OPTIONAL_ELEMENTS.includes(key))
+    .map(([key]) => key);
+  if (missing.length) {
+    console.error('Éléments introuvables dans pos.html :', missing);
+    alert(`pos.html et pos.js ne sont pas de la même version.\nÉléments manquants : ${missing.join(', ')}\n\nRemplacez aussi pos.html (et pos.css), puis rechargez avec Ctrl+F5.`);
+    return false;
+  }
+  return true;
+}
+
 async function init() {
+  if (!checkPageIntegrity()) return;
   if (!supabaseClient) {
     console.error('Supabase client not initialized. Check the CDN script and keys.');
     alert('Supabase n\'a pas été initialisé. Vérifie la clé et le script CDN du projet.');
