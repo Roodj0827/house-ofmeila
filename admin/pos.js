@@ -4,7 +4,7 @@
 const SUPABASE_URL = 'https://zpwxoooqnxvxoahltjkh.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_amt16PERz3_dyckZWf3oUA_2SzshhGy';
 const ADMIN_PASSWORD = 'house of meila'; // ⚠ vérifié côté navigateur seulement (voir notes)
-const SELLERS = ['Meila', 'Samantha', 'Mme Edeline', 'Rood-Jerry'];
+const SELLERS = ['Ed-Gi', 'Samantha', 'Mme Edeline', 'Rood-Jerry'];
 const WHATSAPP_TAB_NAME = 'whatsapp_web_tab';
 const STATUS_LABELS = { PAID: 'Acquittée', PARTIAL: 'Partiellement Acquittée', UNPAID: 'Non Acquittée' };
 const MONTHS = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
@@ -21,7 +21,7 @@ const state = {
   sales: [],
   selectedCustomer: null,
   cart: [],
-  selectedCategory: 'all',
+  selectedCategory: null, // null = aucune catégorie choisie : le catalogue reste masqué
   amountPaidTouched: false,
   customerFormMode: 'create',
   editingCustomerId: null,
@@ -141,7 +141,8 @@ const els = {
   editSave: $('edit-save'),
   historyModal: $('history-modal'),
   historyTitle: $('history-title'),
-  historyBody: $('history-body')
+  historyBody: $('history-body'),
+  mobileCartBar: $('mobile-cart-bar')
 };
 
 /* =========================================================
@@ -421,6 +422,8 @@ async function showView(name) {
   state.view = name;
   ['caisse', 'creances', 'rapports'].forEach((v) => $(`view-${v}`).classList.toggle('hidden', v !== name));
   els.navButtons.forEach((b) => b.classList.toggle('active', b.dataset.nav === name));
+  updateMobileCartBar();
+  window.scrollTo({ top: 0 });
   if (name === 'creances') { await refreshSales(); renderCreancesTable(); }
   if (name === 'rapports') { await refreshSales(); populateReportFilters(); renderReportDashboard({ refresh: false }); }
 }
@@ -465,8 +468,14 @@ function renderCategoryFilters() {
 
 function renderProducts() {
   const query = normalizeWhitespace(els.productSearch.value).toLowerCase();
+  // Catalogue masqué tant qu'aucune catégorie n'est choisie (et qu'aucune recherche n'est saisie).
+  if (state.selectedCategory === null && !query) {
+    els.productResults.innerHTML = '<div class="product-placeholder">👆 Veuillez sélectionner une catégorie pour afficher les articles.</div>';
+    return;
+  }
+
   const rows = state.products.filter((product) => {
-    if (state.selectedCategory !== 'all' && (product.category || 'autres') !== state.selectedCategory) return false;
+    if (state.selectedCategory && state.selectedCategory !== 'all' && (product.category || 'autres') !== state.selectedCategory) return false;
     if (!query) return true;
     return product.name.toLowerCase().includes(query) || (product.category || '').toLowerCase().includes(query);
   });
@@ -569,6 +578,17 @@ function renderCart() {
   els.discountAmount.textContent = pricing.discountAmount > 0 ? `- ${formatCurrency(pricing.discountAmount)}` : '0 HTG';
   els.totalAmount.textContent = formatCurrency(pricing.finalTotal);
   updatePaymentSummary();
+  updateMobileCartBar();
+}
+
+/** Barre flottante « Voir le panier » (mobile / tablette) : évite de faire défiler jusqu'au panier. */
+function updateMobileCartBar() {
+  const qty = state.cart.reduce((t, i) => t + Number(i.quantity || 0), 0);
+  const show = state.view === 'caisse' && qty > 0;
+  els.mobileCartBar.classList.toggle('hidden', !show);
+  if (show) {
+    els.mobileCartBar.textContent = `🛒 Voir le panier · ${qty} article${qty > 1 ? 's' : ''} · ${formatCurrency(getDiscountedTotal().finalTotal)}`;
+  }
 }
 
 /** Acompte / balance / statut en temps réel (caisse). Retourne le calcul courant. */
@@ -1052,15 +1072,15 @@ function renderCreancesTable() {
     const late = s.echeance && s.echeance < today;
     return `
     <tr>
-      <td>#${s.receiptNumber}</td>
-      <td>${formatDateTime(s.timestamp)}</td>
-      <td>${esc(s.customerName)}<br><small class="muted">${esc(s.cardNumber)}</small></td>
-      <td>${formatCurrency(s.total)}</td>
-      <td>${formatCurrency(s.montantPaye)}</td>
-      <td><strong>${formatCurrency(s.balanceRestante)}</strong></td>
-      <td class="${late ? 'overdue' : ''}">${formatDateOnly(s.echeance)}${late ? ' ⚠' : ''}</td>
-      <td>${badgeHtml(s.statutPaiement)}</td>
-      <td><div class="row-actions">
+      <td data-label="Fiche #">#${s.receiptNumber}</td>
+      <td data-label="Date">${formatDateTime(s.timestamp)}</td>
+      <td data-label="Client">${esc(s.customerName)}<br><small class="muted">${esc(s.cardNumber)}</small></td>
+      <td data-label="Total">${formatCurrency(s.total)}</td>
+      <td data-label="Versé">${formatCurrency(s.montantPaye)}</td>
+      <td data-label="Balance"><strong>${formatCurrency(s.balanceRestante)}</strong></td>
+      <td data-label="Échéance" class="${late ? 'overdue' : ''}">${formatDateOnly(s.echeance)}${late ? ' ⚠' : ''}</td>
+      <td data-label="Statut">${badgeHtml(s.statutPaiement)}</td>
+      <td data-label=""><div class="row-actions">
         <button type="button" class="act-pay" data-act="pay" data-id="${esc(s.id)}">+ Versement</button>
         <button type="button" class="act-wa" data-act="remind" data-id="${esc(s.id)}">Relance WhatsApp</button>
         <button type="button" data-act="log" data-id="${esc(s.id)}">Journal</button>
@@ -1224,15 +1244,15 @@ async function renderReportDashboard({ refresh = true } = {}) {
 
   els.reportRows.innerHTML = rows.map((s) => `
     <tr>
-      <td>${formatDateTime(s.timestamp)}</td>
-      <td>#${s.receiptNumber}</td>
-      <td>${esc(s.customerName)}</td>
-      <td>${esc(s.seller)}</td>
-      <td>${formatCurrency(s.total)}</td>
-      <td>${formatCurrency(s.montantPaye)}</td>
-      <td>${formatCurrency(s.balanceRestante)}</td>
-      <td>${badgeHtml(s.statutPaiement)}</td>
-      <td><div class="row-actions">
+      <td data-label="Date">${formatDateTime(s.timestamp)}</td>
+      <td data-label="Reçu #">#${s.receiptNumber}</td>
+      <td data-label="Client">${esc(s.customerName)}</td>
+      <td data-label="Vendeur">${esc(s.seller)}</td>
+      <td data-label="Total">${formatCurrency(s.total)}</td>
+      <td data-label="Payé">${formatCurrency(s.montantPaye)}</td>
+      <td data-label="Reste">${formatCurrency(s.balanceRestante)}</td>
+      <td data-label="Statut">${badgeHtml(s.statutPaiement)}</td>
+      <td data-label=""><div class="row-actions">
         <button type="button" class="act-wa" data-act="wa" data-id="${esc(s.id)}">Reçu WhatsApp</button>
         <button type="button" data-act="print" data-id="${esc(s.id)}">Imprimer</button>
         <button type="button" data-act="edit" data-id="${esc(s.id)}">Modifier la Fiche</button>
@@ -1327,11 +1347,11 @@ function renderEditItems() {
   const d = state.editDraft;
   els.editItems.innerHTML = d.items.length ? d.items.map((it, i) => `
     <tr>
-      <td><input type="number" min="1" step="1" value="${it.quantity}" data-edit-field="quantity" data-i="${i}" style="width:80px" /></td>
-      <td><input type="text" value="${esc(it.name)}" data-edit-field="name" data-i="${i}" /></td>
-      <td><input type="number" min="0" step="1" value="${it.price}" data-edit-field="price" data-i="${i}" style="width:110px" /></td>
-      <td data-line-total="${i}">${formatPrice(it.price * it.quantity)}</td>
-      <td><button type="button" class="remove-btn" data-edit-remove="${i}">Suppr.</button></td>
+      <td data-label="Qté"><input type="number" min="1" step="1" value="${it.quantity}" data-edit-field="quantity" data-i="${i}" style="width:80px" /></td>
+      <td data-label="Article"><input type="text" value="${esc(it.name)}" data-edit-field="name" data-i="${i}" /></td>
+      <td data-label="P.U."><input type="number" min="0" step="1" value="${it.price}" data-edit-field="price" data-i="${i}" style="width:110px" /></td>
+      <td data-label="Montant" data-line-total="${i}">${formatPrice(it.price * it.quantity)}</td>
+      <td data-label=""><button type="button" class="remove-btn" data-edit-remove="${i}">Suppr.</button></td>
     </tr>`).join('')
     : '<tr><td colspan="5" class="muted" style="padding:14px;text-align:center;">Aucun article.</td></tr>';
   updateEditSummary();
@@ -1490,6 +1510,8 @@ function setupEvents() {
   els.quickAddProduct.addEventListener('click', openModal);
   els.quickAddForm.addEventListener('submit', addQuickProduct);
   els.closeModal.addEventListener('click', closeModal);
+
+  els.mobileCartBar.addEventListener('click', () => document.querySelector('.panel-right').scrollIntoView({ behavior: 'smooth', block: 'start' }));
 
   // caisse / paiement
   els.amountPaid.addEventListener('input', () => { state.amountPaidTouched = true; updatePaymentSummary(); });
