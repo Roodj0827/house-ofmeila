@@ -4,7 +4,7 @@
 const SUPABASE_URL = 'https://zpwxoooqnxvxoahltjkh.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_amt16PERz3_dyckZWf3oUA_2SzshhGy';
 const ADMIN_PASSWORD = 'house of meila'; // ⚠ vérifié côté navigateur seulement (voir notes)
-const SELLERS = ['Ed-Gi', 'Samantha', 'Mme Edeline', 'Rood-Jerry'];
+const SELLERS = ['Meila', 'Samantha', 'Mme Edeline', 'Rood-Jerry'];
 const WHATSAPP_TAB_NAME = 'whatsapp_web_tab';
 const STATUS_LABELS = { PAID: 'Acquittée', PARTIAL: 'Partiellement Acquittée', UNPAID: 'Non Acquittée' };
 const MONTHS = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
