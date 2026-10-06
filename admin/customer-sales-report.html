@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -33,6 +33,8 @@
                 <th>Carte</th>
                 <th>Nombre de ventes</th>
                 <th>Total</th>
+                <th>Payé</th>
+                <th>Reste</th>
                 <th>Réduction</th>
                 <th>Dernière vente</th>
               </tr>
@@ -44,6 +46,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script>
       const SUPABASE_URL = 'https://zpwxoooqnxvxoahltjkh.supabase.co';
       const SUPABASE_ANON_KEY = 'sb_publishable_amt16PERz3_dyckZWf3oUA_2SzshhGy';
@@ -52,6 +55,7 @@
         : null;
       const supabaseClient = supabaseClientFactory ? supabaseClientFactory(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
+      function esc(v) { return String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
       function formatCurrency(value) { const n = Number(value || 0); return `${n.toLocaleString('fr-FR')} HTG`; }
 
       function mapSaleRow(row) {
@@ -60,7 +64,8 @@
           customerId: row.customer_id || row.customerId || null,
           customerName: row.customer_name || row.customerName || '—',
           cardNumber: row.card_number || row.cardNumber || '—',
-          total: Number(row.total || 0),
+          total: Number(row.total_facture ?? row.total ?? 0),
+          paid: row.montant_paye === null || row.montant_paye === undefined ? Number(row.total_facture ?? row.total ?? 0) : Number(row.montant_paye),
           discount: Number(row.discount || 0),
           timestamp: row.timestamp || row.created_at || new Date().toISOString()
         };
@@ -83,13 +88,15 @@
 
         sales.forEach((sale) => {
           const key = sale.customerId || sale.customerName;
-          if (!map.has(key)) map.set(key, { customerName: sale.customerName || '—', cardNumber: sale.cardNumber || '—', count: 0, total: 0, discount: 0, last: sale.timestamp });
+          if (!map.has(key)) map.set(key, { customerName: sale.customerName || '—', cardNumber: sale.cardNumber || '—', count: 0, total: 0, paid: 0, discount: 0, last: sale.timestamp });
           const row = map.get(key);
           row.count += 1;
           row.total += Number(sale.total || 0);
+          row.paid += Number(sale.paid || 0);
           row.discount += Number(sale.discount || 0);
-          row.last = sale.timestamp;
+          if (new Date(sale.timestamp) > new Date(row.last)) row.last = sale.timestamp;
         });
+        window.__groupedRows = [...map.values()];
 
         const list = [...map.values()].filter((row) => {
           if (!keyword) return true;
@@ -99,24 +106,35 @@
         const rows = document.getElementById('rows');
         rows.innerHTML = list.length ? list.map((row) => `
           <tr>
-            <td>${row.customerName}</td>
-            <td>${row.cardNumber}</td>
+            <td>${esc(row.customerName)}</td>
+            <td>${esc(row.cardNumber)}</td>
             <td>${row.count}</td>
             <td>${formatCurrency(row.total)}</td>
+            <td>${formatCurrency(row.paid)}</td>
+            <td>${formatCurrency(Math.max(0, row.total - row.paid))}</td>
             <td>${formatCurrency(row.discount)}</td>
             <td>${new Date(row.last).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' })}</td>
           </tr>
-        `).join('') : '<tr><td colspan="6" style="padding:18px; text-align:center;">Aucune vente.</td></tr>';
+        `).join('') : '<tr><td colspan="8" style="padding:18px; text-align:center;">Aucune vente.</td></tr>';
       }
 
       document.getElementById('search').addEventListener('input', render);
       document.getElementById('download').addEventListener('click', async () => {
-        const sales = await readSales();
-        const list = [...new Map(sales.map((sale) => [sale.customerId || sale.customerName, { customer: sale.customerName, card: sale.cardNumber, total: sale.total, discount: sale.discount, date: sale.timestamp }])).values()];
-        const lines = [['Client','Carte','Total','Réduction','Date'].join(',')];
-        list.forEach((row) => lines.push([`"${row.customer}"`,`"${row.card}"`,row.total,row.discount,`"${new Date(row.date).toISOString()}"`].join(',')));
-        const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
+        if (!window.__groupedRows) await render();
+        const header = ['Client', 'Carte', 'Nombre de ventes', 'Total', 'Payé', 'Reste', 'Réduction', 'Dernière vente'];
+        const data = window.__groupedRows.map((r) => ({
+          'Client': r.customerName, 'Carte': r.cardNumber, 'Nombre de ventes': r.count, 'Total': r.total,
+          'Payé': r.paid, 'Reste': Math.max(0, r.total - r.paid), 'Réduction': r.discount,
+          'Dernière vente': new Date(r.last).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' })
+        }));
+        if (window.XLSX) {
+          const wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(data, { header }), 'Par personne');
+          XLSX.writeFile(wb, 'ventes-par-personne.xlsx');
+          return;
+        }
+        const csv = [header.join(',')].concat(data.map((r) => header.map((h) => `"${String(r[h]).replace(/"/g, '""')}"`).join(','))).join('\n');
+        const url = URL.createObjectURL(new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' }));
         const a = document.createElement('a');
         a.href = url; a.download = 'ventes-par-personne.csv'; a.click();
         URL.revokeObjectURL(url);
