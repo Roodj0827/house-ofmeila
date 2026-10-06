@@ -29,6 +29,7 @@ const state = {
   paymentTarget: null,
   editDraft: null,
   reportRows: [],
+  salesError: null,
   view: 'caisse'
 };
 
@@ -108,6 +109,7 @@ const els = {
   kpiNatcash: $('kpi-natcash'),
   kpiOther: $('kpi-other'),
   reportRows: $('report-rows'),
+  reportSummary: $('report-summary'),
   openCustomerGroupPage: $('open-customer-group-page'),
   // modales
   confirmModal: $('confirm-modal'),
@@ -317,10 +319,23 @@ async function readCustomers() {
 }
 
 async function readSales() {
-  if (!supabaseClient) return [];
-  const { data, error } = await supabaseClient.from('sales').select('*').order('timestamp', { ascending: false });
-  if (error) { console.error(error); return []; }
-  return (data || []).map(mapSaleRow).filter(Boolean);
+  state.salesError = null;
+  if (!supabaseClient) { state.salesError = 'Supabase non initialisé.'; return []; }
+  // Supabase renvoie au maximum 1000 lignes par requête : on pagine pour charger tout l'historique.
+  const pageSize = 1000;
+  const all = [];
+  for (let from = 0; ; from += pageSize) {
+    const { data, error } = await supabaseClient.from('sales').select('*')
+      .order('timestamp', { ascending: false }).range(from, from + pageSize - 1);
+    if (error) {
+      console.error(error);
+      state.salesError = error.message || 'Erreur de chargement des ventes.';
+      return all;
+    }
+    all.push(...(data || []));
+    if (!data || data.length < pageSize) break;
+  }
+  return all.map(mapSaleRow).filter(Boolean);
 }
 
 async function fetchSaleById(id) {
@@ -330,7 +345,11 @@ async function fetchSaleById(id) {
   return mapSaleRow(data);
 }
 
-async function refreshSales() { state.sales = await readSales(); }
+async function refreshSales() {
+  const rows = await readSales();
+  // En cas d'erreur réseau/RLS, on garde les ventes déjà chargées au lieu de tout vider.
+  if (!state.salesError || rows.length) state.sales = rows;
+}
 async function refreshCustomers() { state.customers = await readCustomers(); }
 
 async function createCustomerRecord(payload) {
@@ -1237,8 +1256,15 @@ async function renderReportDashboard({ refresh = true } = {}) {
   els.kpiNatcash.textContent = formatCurrency(byMode.Natcash || 0);
   els.kpiOther.textContent = formatCurrency(other);
 
+  els.reportSummary.textContent = state.sales.length
+    ? `${rows.length} fiche${rows.length > 1 ? 's' : ''} affichée${rows.length > 1 ? 's' : ''} sur ${state.sales.length} au total.`
+    : '';
+
   if (!rows.length) {
-    els.reportRows.innerHTML = '<tr><td colspan="9" class="muted" style="padding:18px; text-align:center;">Aucune vente pour cette période.</td></tr>';
+    let msg = 'Aucune vente pour cette période.';
+    if (state.salesError) msg = `Impossible de charger les ventes : ${esc(state.salesError)}`;
+    else if (state.sales.length) msg = `Aucune vente sur cette période, mais ${state.sales.length} fiche(s) existent. Choisissez « Tout l'historique » ou une autre période.`;
+    els.reportRows.innerHTML = `<tr><td colspan="9" class="muted" style="padding:18px; text-align:center;">${msg}</td></tr>`;
     return;
   }
 
