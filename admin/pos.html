@@ -564,6 +564,7 @@
       }
     </style>
     <link rel="stylesheet" href="./pos.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   </head>
   <body>
     <div class="pos-shell">
@@ -577,13 +578,28 @@
             <h1>Point de vente</h1>
           </div>
         </div>
+        <nav class="topbar-nav" aria-label="Navigation principale">
+          <button type="button" class="nav-btn active" data-nav="caisse">Caisse</button>
+          <button type="button" class="nav-btn" data-nav="creances">Créances &amp; Balances</button>
+          <button type="button" class="nav-btn" data-nav="rapports">Rapports</button>
+        </nav>
         <div class="topbar-actions">
-          <span class="topbar-chip">Caisse</span>
+          <label class="operator-label">
+            <span>Opérateur</span>
+            <select id="operator-select">
+              <option value="">Sélectionner</option>
+              <option value="Meila">Meila</option>
+              <option value="Samantha">Samantha</option>
+              <option value="Mme Edeline">Mme Edeline</option>
+              <option value="Rood-Jerry">Rood-Jerry</option>
+              <option value="Admin">Admin</option>
+            </select>
+          </label>
           <button id="reset-sale" class="ghost-btn" type="button">Nouvelle vente</button>
         </div>
       </header>
 
-      <main class="pos-layout">
+      <main id="view-caisse" class="pos-layout">
         <section class="panel panel-left">
           <div class="panel-section customer-section">
             <div class="section-header">
@@ -601,18 +617,39 @@
 
             <div id="customer-creation-box" class="new-customer-box">
               <div class="section-header compact">
-                <h3>Nouveau client</h3>
+                <h3 id="customer-form-title">Nouveau client</h3>
               </div>
               <form id="client-form" class="client-form">
                 <label>
-                  <span>Nom</span>
+                  <span id="customer-name-label">Nom</span>
                   <input id="customer-name" type="text" placeholder="Nom du client" />
                 </label>
                 <label>
                   <span>WhatsApp</span>
                   <input id="customer-phone" type="tel" placeholder="Ex. 509 1234 5678" />
                 </label>
-                <button class="secondary-btn" type="submit">Créer la carte fidélité</button>
+                <div id="full-customer-fields" class="form-grid two-cols hidden">
+                  <label>
+                    <span>Prénom</span>
+                    <input id="customer-firstname" type="text" />
+                  </label>
+                  <label>
+                    <span>Nom de famille</span>
+                    <input id="customer-lastname" type="text" />
+                  </label>
+                  <label>
+                    <span>N° carte (non modifiable)</span>
+                    <input id="customer-card" type="text" readonly />
+                  </label>
+                  <label>
+                    <span>Tampons (0-10)</span>
+                    <input id="customer-stamps" type="number" min="0" max="10" step="1" />
+                  </label>
+                </div>
+                <div class="form-actions">
+                  <button id="customer-submit" class="secondary-btn" type="submit">Créer la carte fidélité</button>
+                  <button id="cancel-customer-edit" class="ghost-btn hidden" type="button">Annuler</button>
+                </div>
               </form>
             </div>
           </div>
@@ -650,6 +687,7 @@
                     <th>Description</th>
                     <th>P.U.</th>
                     <th>Montant</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody id="cart-items"></tbody>
@@ -661,7 +699,7 @@
                 <span>Vendu par</span>
                 <select id="seller-select">
                   <option value="">Sélectionner</option>
-                  <option value="Ed-Gi">Ed-Gi</option>
+                  <option value="Meila">Meila</option>
                   <option value="Samantha">Samantha</option>
                   <option value="Mme Edeline">Mme Edeline</option>
                   <option value="Rood-Jerry">Rood-Jerry</option>
@@ -694,6 +732,33 @@
               </div>
             </div>
 
+            <div class="payment-box">
+              <div class="payment-box-head">
+                <strong>Paiement</strong>
+                <span id="payment-status-badge" class="pay-badge paid">PAID</span>
+              </div>
+              <label>
+                <span>Montant versé / Acompte (HTG)</span>
+                <div class="inline-search no-margin">
+                  <input id="amount-paid" type="number" min="0" step="1" placeholder="0" />
+                  <button id="fill-full-amount" class="secondary-btn" type="button">Tout payer</button>
+                </div>
+              </label>
+              <div class="summary-row">
+                <span>Balance restante</span>
+                <strong id="balance-amount">0 HTG</strong>
+              </div>
+              <p id="payment-hint" class="muted payment-hint hidden"></p>
+              <label id="due-date-wrap" class="hidden">
+                <span>Date d'échéance (optionnel)</span>
+                <input id="due-date" type="date" />
+              </label>
+              <label class="check-row">
+                <input id="auto-whatsapp" type="checkbox" />
+                <span>Envoyer automatiquement le reçu WhatsApp après validation</span>
+              </label>
+            </div>
+
             <div class="loyalty-box">
               <div class="loyalty-header">
                 <span>Carte de fidélité</span>
@@ -707,13 +772,58 @@
         </aside>
       </main>
 
-      <section class="panel report-panel">
+      <section id="view-creances" class="panel report-panel hidden">
+        <div class="report-header">
+          <div>
+            <p class="eyebrow">Suivi des paiements</p>
+            <h2>Créances &amp; Balances</h2>
+          </div>
+          <div class="report-controls">
+            <label>
+              <span>Recherche</span>
+              <input id="creance-search" type="text" placeholder="Nom, carte ou n° de fiche" />
+            </label>
+            <label>
+              <span>Statut</span>
+              <select id="creance-status">
+                <option value="">Tous (non soldées)</option>
+                <option value="PARTIAL">Partiellement acquittée</option>
+                <option value="UNPAID">Non acquittée</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi-card accent"><span>Total des créances</span><strong id="creance-kpi-total">0 HTG</strong></div>
+          <div class="kpi-card"><span>Fiches non soldées</span><strong id="creance-kpi-count">0</strong></div>
+          <div class="kpi-card"><span>Échéances dépassées</span><strong id="creance-kpi-overdue">0</strong></div>
+        </div>
+        <div class="report-table-wrap">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>Fiche #</th>
+                <th>Date</th>
+                <th>Client</th>
+                <th>Total</th>
+                <th>Versé</th>
+                <th>Balance</th>
+                <th>Échéance</th>
+                <th>Statut</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="creances-rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="view-rapports" class="panel report-panel hidden">
         <div class="report-header">
           <div>
             <p class="eyebrow">Rapports</p>
             <h2>Tableau de bord</h2>
           </div>
-
           <div class="report-controls">
             <label>
               <span>Recherche client</span>
@@ -725,29 +835,34 @@
                 <option value="day">Journalier</option>
                 <option value="week">Hebdomadaire</option>
                 <option value="month" selected>Mensuel</option>
+                <option value="year">Annuel</option>
+                <option value="all">Tout l'historique</option>
               </select>
+            </label>
+            <label id="report-month-wrap">
+              <span>Mois</span>
+              <select id="report-month"></select>
+            </label>
+            <label id="report-year-wrap">
+              <span>Année</span>
+              <select id="report-year"></select>
             </label>
             <button id="download-report" class="accent-btn" type="button">Télécharger Excel</button>
           </div>
         </div>
 
         <div class="kpi-grid">
-          <div class="kpi-card accent">
-            <span>Argent rentrée</span>
-            <strong id="kpi-revenue">0 HTG</strong>
-          </div>
-          <div class="kpi-card">
-            <span>Nb. ventes</span>
-            <strong id="kpi-sales-count">0</strong>
-          </div>
-          <div class="kpi-card">
-            <span>Ticket moyen</span>
-            <strong id="kpi-average-ticket">0 HTG</strong>
-          </div>
-          <div class="kpi-card">
-            <span>Réduction totale</span>
-            <strong id="kpi-discount-total">0 HTG</strong>
-          </div>
+          <div class="kpi-card accent"><span>Total encaissé (période)</span><strong id="kpi-revenue">0 HTG</strong></div>
+          <div class="kpi-card accent"><span>Total cumulé global</span><strong id="kpi-global">0 HTG</strong></div>
+          <div class="kpi-card"><span>Nb. ventes</span><strong id="kpi-sales-count">0</strong></div>
+          <div class="kpi-card"><span>Ticket moyen</span><strong id="kpi-average-ticket">0 HTG</strong></div>
+          <div class="kpi-card"><span>Réduction totale</span><strong id="kpi-discount-total">0 HTG</strong></div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi-card"><span>Cash</span><strong id="kpi-cash">0 HTG</strong></div>
+          <div class="kpi-card"><span>MonCash</span><strong id="kpi-moncash">0 HTG</strong></div>
+          <div class="kpi-card"><span>Natcash</span><strong id="kpi-natcash">0 HTG</strong></div>
+          <div class="kpi-card"><span>Carte / Autres</span><strong id="kpi-other">0 HTG</strong></div>
         </div>
 
         <div class="report-table-wrap">
@@ -755,19 +870,18 @@
             <thead>
               <tr>
                 <th>Date</th>
+                <th>Reçu #</th>
                 <th>Client</th>
                 <th>Vendeur</th>
-                <th>Paiement</th>
-                <th>Montant</th>
-                <th>Réduction</th>
-                <th>Articles</th>
-                <th>Action</th>
+                <th>Total</th>
+                <th>Payé</th>
+                <th>Reste</th>
+                <th>Statut</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="report-rows">
-              <tr>
-                <td colspan="8" class="muted" style="padding: 18px; text-align: center;">Aucune vente pour cette période.</td>
-              </tr>
+              <tr><td colspan="9" class="muted" style="padding: 18px; text-align: center;">Aucune vente pour cette période.</td></tr>
             </tbody>
           </table>
         </div>
@@ -795,6 +909,104 @@
           </label>
           <button class="accent-btn" type="submit">Ajouter au panier</button>
         </form>
+      </div>
+    </div>
+
+    <!-- Écran de confirmation de vente -->
+    <div id="confirm-modal" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-head"><h3>Vente validée ✓</h3></div>
+        <div id="confirm-body" class="modal-body"></div>
+        <div class="modal-actions">
+          <button id="confirm-send-wa" class="accent-btn" type="button">Envoyer le reçu WhatsApp</button>
+          <button id="confirm-print" class="secondary-btn" type="button">Imprimer</button>
+          <button id="confirm-close" class="ghost-btn" type="button">Fermer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nouveau versement -->
+    <div id="payment-modal" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h3>Nouveau versement</h3>
+          <button type="button" class="modal-x" data-close="payment-modal">×</button>
+        </div>
+        <form id="payment-form" class="modal-body">
+          <div id="payment-info" class="info-box"></div>
+          <label><span>Montant du versement (HTG)</span><input id="payment-amount" type="number" min="1" step="1" /></label>
+          <label>
+            <span>Mode de paiement</span>
+            <select id="payment-mode-input">
+              <option value="Cash">Cash</option>
+              <option value="MonCash">MonCash</option>
+              <option value="Natcash">Natcash</option>
+            </select>
+          </label>
+          <label><span>Note (optionnel)</span><input id="payment-note" type="text" placeholder="Ex. 2e tranche" /></label>
+          <div class="modal-actions">
+            <button class="accent-btn" type="submit">Enregistrer le versement</button>
+            <button class="ghost-btn" type="button" data-close="payment-modal">Annuler</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modification de fiche -->
+    <div id="edit-sale-modal" class="modal hidden">
+      <div class="modal-card wide">
+        <div class="modal-head">
+          <h3 id="edit-sale-title">Modifier la fiche</h3>
+          <button type="button" class="modal-x" data-close="edit-sale-modal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-grid two-cols">
+            <label>
+              <span>Client</span>
+              <div class="inline-search no-margin">
+                <input id="edit-customer-search" type="text" placeholder="N° carte, nom ou téléphone" />
+                <button id="edit-customer-find" class="secondary-btn" type="button">Chercher</button>
+              </div>
+              <small id="edit-customer-label" class="muted"></small>
+            </label>
+            <label><span>Vendu par</span><select id="edit-seller"></select></label>
+            <label><span>Remise (HTG)</span><input id="edit-discount" type="number" min="0" step="1" /></label>
+            <label><span>Date d'échéance</span><input id="edit-echeance" type="date" /></label>
+          </div>
+          <div class="cart-table-wrap">
+            <table>
+              <thead><tr><th>Qté</th><th>Article</th><th>P.U.</th><th>Montant</th><th></th></tr></thead>
+              <tbody id="edit-items"></tbody>
+            </table>
+          </div>
+          <div class="inline-search no-margin">
+            <select id="edit-add-product"></select>
+            <button id="edit-add-item" class="secondary-btn" type="button">+ Catalogue</button>
+            <button id="edit-add-express" class="secondary-btn" type="button">+ Ligne libre</button>
+          </div>
+          <div class="summary-box">
+            <div class="summary-row"><span>Sous-total</span><strong id="edit-subtotal">0 HTG</strong></div>
+            <div class="summary-row"><span>Total</span><strong id="edit-total">0 HTG</strong></div>
+            <div class="summary-row"><span>Déjà payé</span><strong id="edit-paid">0 HTG</strong></div>
+            <div class="summary-row"><span>Balance restante</span><strong id="edit-balance">0 HTG</strong></div>
+            <div class="summary-row"><span>Statut</span><span id="edit-status" class="pay-badge paid">PAID</span></div>
+          </div>
+          <div class="modal-actions">
+            <button id="edit-save" class="accent-btn" type="button">Enregistrer les modifications</button>
+            <button class="ghost-btn" type="button" data-close="edit-sale-modal">Annuler</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Journal (versements + audit) -->
+    <div id="history-modal" class="modal hidden">
+      <div class="modal-card wide">
+        <div class="modal-head">
+          <h3 id="history-title">Journal de la fiche</h3>
+          <button type="button" class="modal-x" data-close="history-modal">×</button>
+        </div>
+        <div id="history-body" class="modal-body"></div>
       </div>
     </div>
 
